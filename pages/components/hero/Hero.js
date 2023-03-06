@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 // import './Hero.css'
 import Slider from "react-slick";
 import { Row, Col } from 'react-bootstrap'
-import { Link } from 'next/link';
+import  Link from 'next/link';
 import { MdTravelExplore } from 'react-icons/md';
 // import { Article as article } from '../../data';
 import axios from 'axios';
@@ -15,8 +15,7 @@ const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 const Hero = () => {
   const [windowSize, setWindowSize] = useState([
-    window.innerWidth,
-    window.innerHeight,
+    typeof window !== 'undefined' ? window.innerWidth : undefined,typeof window !== 'undefined' ? window.innerHeight : undefined ,
   ]);
   const [showSlide, setShowSlide] = useState([3])
   const [article, setArticle] = useState(null)
@@ -72,29 +71,7 @@ const Hero = () => {
       ref: slideRef,
       prevArrow: <SlickArrowLeft />,
       nextArrow: <SlickArrowRight />,
-      // appendDots: dots => (
-      //   <div
-      //     style={{
-      //       // backgroundColor: "#ddd",
-      //       borderRadius: "10px",
-      //       padding: "10px"
-      //     }}
-      //   >
-      //     <ul style={{ margin: "-10px" }}> {dots} </ul>
-      //   </div>
-      // ),
-      // customPaging: i => (
-      //   <div
-      //     style={{
-      //       width: "30px",
-      //       color: "red",
-      //       // border: "1px blue solid"
-      //     }}
-      //   >
-      //     {i + 1}
-      //   </div>
-      // )
-
+      
     };
 
   const fetchApiArticle = async () => {
@@ -138,7 +115,7 @@ useEffect(() => {
       }
     }, [windowSize[0]])
     
-    // console.log(windowSize[0]);
+    console.log(windowSize[0]);
 
     const handleDragStart = (event) => {
       event.preventDefault();
@@ -170,14 +147,14 @@ useEffect(() => {
             
            <div className="card__article">
              <div className="card__article__image">
-             {/* <Link draggable="true" onDragStart={handleDragStart} to={`/article/${item?.id}-${item?.slug}`}> */}
+             <Link draggable="true" onDragStart={handleDragStart} href={`/article/${item?.id}-${item?.slug}`}>
              <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_default}`} alt={`gambar-${item?.title && HTMLDecoderEncoder.decode((item?.title))}`} />
-            {/* </Link> */}
+            </Link>
              </div>
              <div className="card__description">
-              {/* <Link draggable="true" onDragStart={handleDragStart} to={`/article/${item?.id}-${item?.slug}`}><h1>{item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 7).join(" "))}..</h1></Link> */}
+              <Link draggable="true" onDragStart={handleDragStart} href={`/article/${item?.id}-${item?.slug}`}><h1>{item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 7).join(" "))}..</h1></Link>
               <p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p>
-              {/* <Link to={`/article/${item?.id}-${item?.slug}`}><button className='button__explore' name="button__explore">Explore<MdTravelExplore className="button__icon" size={20}/></button></Link> */}
+              <Link href={`/article/${item?.id}-${item?.slug}`}><button className='button__explore' name="button__explore">Explore<MdTravelExplore className="button__icon" size={20}/></button></Link>
               </div>
             </div>
            </div>

@@ -8,6 +8,8 @@ import "slick-carousel/slick/slick-theme.css";
 import './Testi.css'
 import './Home.css'
 import './components/hero/Hero.css'
+import './article/ArticlePage.css'
+import './components/modal/Modal.css'
 import Navbar from './components/navbar/Navbar';
 
 import Footer from './components/footer/Footer';

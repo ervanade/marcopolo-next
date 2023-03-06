@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
 // import './Article.css'
 import { Row, Col } from 'react-bootstrap'
-import { Link} from 'next/link'
+import Link from 'next/link';
 import { MdOutlineExplore, MdTravelExplore} from "react-icons/md";
 import { BsArrowRightShort } from "react-icons/bs";
 import { ThreeDots } from 'react-loader-spinner'
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 // import { Article as article} from '../data';
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
@@ -46,11 +47,11 @@ useEffect(() => {
 }, [])
   return (
     <div className="article" style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/background-article-5.jpg")` }}>
-      <Helmet>
+      <Head>
         <title>{`Adventurer & Discoverer - Article`}</title>
         <meta name="description" content={`Adventurer & Discoverer - Article`}/>
         <meta name="keywords" content={`Adventurer & Discoverer - Article`} />
-      </Helmet>
+      </Head>
    
   <div className="container">
     <h1 className='title__page'>Article <MdOutlineExplore /></h1>
@@ -60,7 +61,7 @@ useEffect(() => {
       { article ? article?.slice(0, perPage).map((item, index ) => {
         return (
           <Col md='4' sm='6' index={index}>
-          {/* <Link href={`/article/${item?.id}-${item?.slug}`}> */}
+          <Link href={`/article/${item?.id}-${item?.slug}`}>
           <div className="card__article mt-50">
           <div className="card__article__image">
 
@@ -68,7 +69,7 @@ useEffect(() => {
           </div>
             <div className="card__description"><h1>{`${item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 8).join(" "))} ${item?.title.split(" ").length <= 9 ? '' : '...'}`}</h1><p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></div>
            </div>
-           {/* </Link> */}
+           </Link>
            </Col>
         )
       })

@@ -7,10 +7,9 @@ import { Row, Col } from 'react-bootstrap'
 import { Helmet } from 'react-helmet';
 
 const Testi = () => {
-//   const [windowSize, setWindowSize] = useState([
-//     window.innerWidth,
-//     window.innerHeight,
-//   ]);
+  const [windowSize, setWindowSize] = useState([
+    typeof window !== 'undefined' ? window.innerWidth : undefined,typeof window !== 'undefined' ? window.innerHeight : undefined ,
+  ]);
   const [showSlide, setShowSlide] = useState([3])
   const settingsCardTesti = {
     dots: true,
@@ -25,24 +24,24 @@ const Testi = () => {
     adaptiveHeight: true,
   };
 
-//   useEffect(() => {
-//     const handleWindowResize = () => {
-//       setWindowSize([window.innerWidth, window.innerHeight]);
-//     };
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
 
-//     window.addEventListener('resize', handleWindowResize);
+    window.addEventListener('resize', handleWindowResize);
 
-//     return () => {
-//       window.removeEventListener('resize', handleWindowResize);
-//     };
-//   });
-//   useEffect(() => {
-//     if(windowSize[0] < 768) {
-//       setShowSlide(1)
-//     } else {
-//       setShowSlide(3)
-//     }
-//   }, [windowSize[0]])
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  });
+  useEffect(() => {
+    if(windowSize[0] < 768) {
+      setShowSlide(1)
+    } else {
+      setShowSlide(3)
+    }
+  }, [windowSize[0]])
   return (
     <div className="testi">
       <Helmet>

@@ -22,42 +22,33 @@ import {
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
-const ArticlePage = () => {
+const ArticlePage = ({article}) => {
     const router = useRouter()
-
+console.log(article);
   const { id } = router.query
-  const [article, setArticle] = useState(null);
+//   const [article, setArticle] = useState(null);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  const fetchApiArticle = async () => {
-    try {
-      // eslint-disable-next-line
-      const responseUser = await axios({
-        method: "get",
-        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
-        // url: "https://monogram.co.id/api/section",
-        // withCredentials: true,
-        // headers: {
-        //   // 'Cookie': 'ci_session=958be67be75ec79e9946daf9301536e408937a29',
-        //   'Content-Type': 'application/json; charset=UTF-8',
-        //   // 'set-cookie': 'ci_session=958be67be75ec79e9946daf9301536e408937a29',
-        //   'X-API-Key': '635d1f6f7abc38-23672912-13095431'}
-      }).then(function (response) {
-        // handle success
-        setArticle(response.data.data[0]);
-        // console.log(responseUser)
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+//   const fetchApiArticle = async () => {
+//     try {
+//       // eslint-disable-next-line
+//       const responseUser = await axios({
+//         method: "get",
+//         url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
+//       }).then(function (response) {
+//         setArticle(response.data.data[0]);
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
     const handleClick = () => {
       navigator.clipboard.writeText(currentUrl);
     };
 
-  useEffect(() => {
-    fetchApiArticle();
-  }, []);
+//   useEffect(() => {
+//     fetchApiArticle();
+//   }, []);
 
   return (
     <div className="article-page">
@@ -182,26 +173,6 @@ const ArticlePage = () => {
           </div>
           <p>Share this on :</p>
           <div className="share__icon">
-            {/* <img
-              src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/facebook.png`}
-              alt="fb__icon"
-            />
-            <img
-              src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/twitter.png`}
-              alt="fb__icon"
-            />
-            <img
-              src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/whatsapp.png`}
-              alt="fb__icon"
-            />
-            <img
-              src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/telegram.png`}
-              alt="fb__icon"
-            />
-            <img
-              src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/copy-link.png`}
-              alt="fb__icon"
-            /> */}
             <FacebookShareButton
               url={currentUrl}
               title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
@@ -281,5 +252,17 @@ const ArticlePage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps({params}) {
+
+    const res = await axios.get(`https://api.adventureranddiscoverer.com/api/article/${params.id}`);
+  const data = await res.data.data[0];
+  
+    return {
+      props: {
+        article: data,
+      },
+    };
+  }
 
 export default ArticlePage;

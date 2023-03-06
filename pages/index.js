@@ -2,11 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Navbar from './components/navbar/Navbar';
-import {Home as Homes }from './Home';
-import Article from './Article';
-import ArticlePage from './ArticlePage';
-import Category from './Category';
-import Testi from './Testi';
+
 import Footer from './components/footer/Footer';
 import { BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
 import { useState, useEffect } from 'react'
@@ -28,19 +24,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <h1>tes</h1> */}
-      {/* <BrowserRouter basename='/'> */}
 
      <Navbar />
+     <Footer />
       
-      {/* <Routes>
-      <Route exact path="/" element={<Homes openModalLogin={openModalLogin} setOpenModalLogin={setOpenModalLogin} openModalRegister={openModalRegister} setOpenModalRegister={setOpenModalRegister}/>} />
-      <Route exact path="/article" element={<Article />} />
-      <Route exact path="/article/:id" element={<ArticlePage />} />
-      <Route exact path="/category/:categoryId" element={<Category />} />
-      <Route exact path="/testimoni" element={<Testi />} />
-      </Routes>
-      <Footer />
-      </BrowserRouter> */}
+      
     </>
   )
 }

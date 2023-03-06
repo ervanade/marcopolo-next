@@ -4,8 +4,10 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { GiGalleon, GiCoffeeCup } from "react-icons/gi";
 import { IoHome } from "react-icons/io5";
 
-import { Link, useLocation } from 'react-router-dom';
+// import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
 import { AiFillHome, AiFillFileText, AiFillCalendar } from "react-icons/ai";
+import { useRouter } from 'next/router';
 
 
 
@@ -21,6 +23,8 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
     setMenuButton(false)
   }
   // const history = useLocation()
+  const history = useRouter();
+
 
   useEffect(() => {
     if (menuButton) {
@@ -29,30 +33,30 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
       document.body.style.overflow = "visible";
     }
   }, [menuButton, setMenuButton] )
-  // useEffect(() => {
-  //   setMenuButton(false)
-  // }, [history])
-  // useEffect(() => {
-  //   if (history.pathname.includes('/article')) {
-  //    setNavbarSticky(true)
-  //   } else {
-  //    setNavbarSticky(false)
-  //   }
-  //  }, [history])
+  useEffect(() => {
+    setMenuButton(false)
+  }, [history])
+  useEffect(() => {
+    if (history.pathname.includes('/article')) {
+     setNavbarSticky(true)
+    } else {
+     setNavbarSticky(false)
+    }
+   }, [history])
   return (
     <div>
     <header className={`${menuButton ? `front` : ``} ${navbarSticky ? `header-fixed` : ``} `}>
         <div className="container">
 
         <div className="navbar__wrapper">
-        <div className="header__left"><div className='logo'><Link to="/"><img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/Marcopolo-Logo.png`} alt="s" /></Link></div> 
+        <div className="header__left"><div className='logo'><Link href="/"><img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/Marcopolo-Logo.png`} alt="s" /></Link></div> 
             </div>
         <div className="header__right">
           <div className="nav__links">
-            <ul><li><Link to="/"><IoHome className='nav__icon'/> Home</Link></li>
-            <li><Link to="/article">
+            <ul><li><Link href="/"><IoHome className='nav__icon'/> Home</Link></li>
+            <li><Link href="/article">
               Articles</Link></li>
-            <li><Link to="/testimoni">
+            <li><Link href="/testimoni">
             Testimony</Link></li>
 
             </ul></div>
@@ -69,9 +73,9 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
     <div className={`navbar_overlay ${menuButton ? `show` : ``}`}>
             <ul className='nav_ul'>
             <button onClick={buttonOnChangeClose} classname="button__close__navbar" name="button__close__navbar"><FaTimes className='navbar__icon'/></button>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/article">Articles</Link></li>
-                <li><Link to="/testimoni">Testimony</Link></li>
+                <li><Link href="/">Home</Link></li>
+                <li><Link href="/article">Articles</Link></li>
+                <li><Link href="/testimoni">Testimony</Link></li>
             
             </ul>
         </div>

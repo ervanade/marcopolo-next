@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 // import './Hero.css'
 import Slider from "react-slick";
 import { Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { Link } from 'next/link';
 import { MdTravelExplore } from 'react-icons/md';
 // import { Article as article } from '../../data';
 import axios from 'axios';
@@ -102,7 +102,7 @@ const Hero = () => {
       // eslint-disable-next-line
       const responseUser = await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_API_KEY}/article`,    
+        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article`,    
       })
       .then(function (response) {
           // handle success
@@ -154,7 +154,7 @@ useEffect(() => {
       <div>
       <div className='overlay__background'>
       </div>
-      <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/adventure-5.jpeg`} alt="hero" className='hero__image'/>
+      <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/adventure-5.jpeg`} alt="hero" className='hero__image'/>
     <div className="container">
     <div className="hero__card__article">
 
@@ -170,78 +170,22 @@ useEffect(() => {
             
            <div className="card__article">
              <div className="card__article__image">
-             <Link draggable="true" onDragStart={handleDragStart} to={`/article/${item?.id}-${item?.slug}`}>
-             <img src={`${process.env.REACT_APP_API_PUBLIC}${item?.images[0].image_default}`} alt={`gambar-${item?.title && HTMLDecoderEncoder.decode((item?.title))}`} />
-            </Link>
+             {/* <Link draggable="true" onDragStart={handleDragStart} to={`/article/${item?.id}-${item?.slug}`}> */}
+             <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_default}`} alt={`gambar-${item?.title && HTMLDecoderEncoder.decode((item?.title))}`} />
+            {/* </Link> */}
              </div>
-             <div className="card__description"><Link draggable="true" onDragStart={handleDragStart} to={`/article/${item?.id}-${item?.slug}`}><h1>{item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 7).join(" "))}..</h1></Link><p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p><Link to={`/article/${item?.id}-${item?.slug}`}><button className='button__explore' name="button__explore">Explore<MdTravelExplore className="button__icon" size={20}/></button></Link></div>
+             <div className="card__description">
+              {/* <Link draggable="true" onDragStart={handleDragStart} to={`/article/${item?.id}-${item?.slug}`}><h1>{item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 7).join(" "))}..</h1></Link> */}
+              <p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p>
+              {/* <Link to={`/article/${item?.id}-${item?.slug}`}><button className='button__explore' name="button__explore">Explore<MdTravelExplore className="button__icon" size={20}/></button></Link> */}
+              </div>
             </div>
            </div>
         )
       })
     :null
     }
-          {/* <div>
-            
-          <div className="card__article">
-            <div className="card__article__image">
-          
-            <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/home-1.png`} alt="" />
-           
-            </div>
-            <div className="card__description"><h1>Judul Article I</h1><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam autem mollitia unde.</p><Link to="/article/1"><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></Link></div>
-           </div>
-          </div>
-          <div>
-          <div className="card__article">
-            <div className="card__article__image">
-            
-            <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/home-0.png`} alt="" />
-           
-            </div>
-            <div className="card__description"><h1>Judul Article II</h1><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam autem mollitia unde.</p><Link to="/article/1"><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></Link></div>
-           </div>
-          </div>
-          <div>
-          <div className="card__article">
-            <div className="card__article__image">
-            
-            <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/hero-2.jpg`} alt="" />
-           
-            </div>
-            <div className="card__description"><h1>Judul Article III</h1><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam autem mollitia unde.</p><Link to="/article/1"><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></Link></div>
-           </div>
-          </div>
-          <div>
-          <div className="card__article">
-            <div className="card__article__image">
-            
-            <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/home-0.png`} alt="" />
-           
-            </div>
-            <div className="card__description"><h1>Judul Article IV </h1><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam autem mollitia unde.</p><Link to="/article/1"><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></Link></div>
-           </div>
-          </div>
-          <div>
-          <div className="card__article">
-            <div className="card__article__image">
-            
-            <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/home-0-flip.png`} alt="" />
-           
-            </div>
-            <div className="card__description"><h1>Judul Article V</h1><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam autem mollitia unde.</p><Link to="/article/1"><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></Link></div>
-           </div>
-          </div>
-          <div>
-          <div className="card__article">
-            <div className="card__article__image">
-            
-            <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/home-2.png`} alt="" />
-           
-            </div>
-            <div className="card__description"><h1>Judul Article VI</h1><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam autem mollitia unde.</p><Link to="/article/1"><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></Link></div>
-           </div>
-          </div> */}
+        
         </Slider>
         <div className="card__arrow">
           <div style={{
@@ -275,7 +219,7 @@ useEffect(() => {
     </div>
       </div>
       {/* <div>
-      <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/home-1.png`} alt="hero" className='hero__image'/>
+      <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/home-1.png`} alt="hero" className='hero__image'/>
     <div className="container">
 
     <div className="hero__text">
@@ -285,7 +229,7 @@ useEffect(() => {
     </div>
       </div>
       <div>
-      <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/home-2.png`} alt="hero" className='hero__image'/>
+      <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/home-2.png`} alt="hero" className='hero__image'/>
     <div className="container">
 
     <div className="hero__text">
@@ -296,7 +240,7 @@ useEffect(() => {
       </div> */}
       
     </Slider>
-    {/* <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/home-0-flip.png`} alt="hero" className='hero__image'/>
+    {/* <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/home-0-flip.png`} alt="hero" className='hero__image'/>
     <div className="container">
 
     <div className="hero__text">

@@ -1,0 +1,235 @@
+header {
+    position: sticky !important;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 80px;
+    color: white;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+
+}
+.header-fixed {
+    /* position: fixed !important; */
+}
+.front {
+    z-index: 999;
+    height: 100%;
+}
+header a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    margin: 0 20px 0 0;
+    text-align: center;
+}
+header button {
+    outline: none;
+    border: none;
+    background: none    ;
+}
+.nav__links {
+    display: flex;
+    align-items: center;
+}
+.nav__links a {
+    text-decoration: none;
+    color: black;
+    font-family: "Urbanist";
+    
+    margin: 0 20px 0 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+header a:hover {
+    color: red;
+}
+header ul {
+    display: flex;
+    margin-top: 15px;
+}
+header ul li {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+
+}
+header ul li:hover, a {
+    color: red;
+    cursor: pointer;
+}
+header .container {
+    z-index: 9;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
+.logo img {
+    height: 65px;
+    width: auto;
+}
+.nav__icon {
+    font-size: 24px;
+    margin-right: 5px;
+}
+.navbar__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 30px 20px; */
+
+}
+.header__left {
+    display: flex;
+    align-items: center;
+}
+.header__left span {
+    font-size: 42px;
+    line-height: 37px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin-right: 50px;
+    cursor: pointer;
+    /* font-family: 'Urbanist','Marlboro', 'Fjalla One', sans-serif; */
+}
+.searchbar {
+    display: none;
+}
+.header__right a {
+    padding: 0;
+    margin: 0;
+}
+.mx-4 {
+    margin: 0 20px;
+    font-size: 24px;
+}
+.navbar__icon {
+    font-size: 24px;
+    outline: none;
+    color: black;
+    border: none;
+}
+.navbar__icon:hover {
+    color: red;
+}
+
+/* Navbar Overlay */
+
+.navbar_overlay {
+    /* display: none; */
+    /* opacity: 0; */
+    /* visibility: hidden;  */
+    position: relative;
+    top: -120px;
+    left: -990px;
+    width: 100%;
+    max-width: 550px;
+    transition: all ease-out .5s;
+    height: 110vh;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden!important;
+
+
+}
+.navbar_overlay ul{
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-top: -100px;
+}
+
+.navbar_overlay ul li{
+   list-style: none;
+   margin: 6px 0;
+   padding-bottom: 12px;
+}
+.navbar_overlay ul li a{
+    position: relative;
+   text-decoration: none;
+   cursor: pointer;
+   font-size: 36px;
+   font-weight: 700;
+   line-height: 42px;
+   text-transform: capitalize;
+   color: rgba(0, 0, 0, 0.8);
+}
+
+
+.navbar_overlay ul li a:after{
+    content: "";
+    position: absolute;
+    background-color: red;
+    height: 2px;
+    width: 0%;
+    left: 0;
+    bottom: 0px;
+    transition: .3s;
+}
+.navbar_overlay ul li a:hover{
+    color: red;
+}
+.navbar_overlay ul li a:hover:after{
+    width: 100%;
+}
+
+ .navbar_overlay > .nav_ul_1 li a{
+    position: relative;
+    margin-right: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: 1.3px;
+    cursor: pointer;
+}
+.navbar_overlay .navbar__icon {
+    position: absolute;
+    right: 30px;
+    top: 60px;
+    color: black;
+}
+.navbar_overlay .navbar__icon:hover {
+
+    color: red;
+}
+.navbar_overlay button {
+    outline: none;
+    border: none;
+}
+
+.show { 
+    left: 0;
+    transition: all ease-out .5s;
+    z-index: 999;
+}
+
+@media screen and (max-width: 1024px) {
+  .nav__links {
+    display: none;
+  }
+  .header__right {
+    display: none;
+  }
+  .searchbar {
+    display: flex;
+  }
+  .navbar__wrapper {
+        /* padding: 30px 15px; */
+
+  }
+    
+    }

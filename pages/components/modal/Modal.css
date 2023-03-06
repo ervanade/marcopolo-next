@@ -1,0 +1,46 @@
+.modal__container form {
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+}
+.modal__container p {
+    font-family: "Urbanist";
+    font-weight: 600;
+}
+.modal__container form select {
+    cursor: pointer;
+    font-size: 18px;
+    font-family: "Urbanist";
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+.modal__container form select:hover {
+    border-color: black;
+}
+.modal__container button {
+    padding: 15px 30px;
+    outline: none;
+    border: none;
+    width: 100%;
+    margin-top: 20px;
+    background: #DA3131;
+    color: #fff;
+    font-family: "Urbanist";
+    font-weight: 600;
+
+}
+.modal__container button:hover {
+    color: #fff;
+    background: #000;
+}
+
+.year__failed {
+    display: none;
+    color: red;
+}
+.show__failed {
+    display: block;
+}
+.modal__container {
+    border-radius: 10px;
+
+}

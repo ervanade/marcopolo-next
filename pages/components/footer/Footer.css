@@ -1,0 +1,65 @@
+.section__footer {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    /* height: 10vh; */
+    padding: 5px 0;
+    background: white;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.8);
+}
+.wrapper__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.section__footer h1, h4 {
+    font-weight: 700;
+    font-size: 32px;
+}
+.section__footer .logo img {
+    max-height: 50px;
+}
+.lingkar_umur {
+    font-weight: 700;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 5px;
+}
+.perhatian_footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.perhatian_footer h1 {
+    text-align: center;
+}
+.section__footer h1 {    
+    font-size: 14px!important;
+    margin-bottom: 0px;
+   }
+@media screen and (max-width: 768px) {
+   .section__footer h1 {    
+    font-size: 12px!important;    
+   }
+   .section__footer .logo img {
+    max-height: 30px;
+    margin-right: 20px;
+}
+
+      
+}
+@media screen and (max-width: 500px) {
+   .section__footer h1 {    
+    font-size: 10px!important;    
+   }
+   .section__footer .logo img {
+    max-height: 30px;
+    margin-right: 20px;
+}
+
+      
+}

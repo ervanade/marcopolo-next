@@ -1,1 +1,1 @@
-RewriteRule ^blog/([0-9]+)/?$ /blog/[id] [L]
+RewriteRule ^article/([0-9]+)/?$ /article/[id] [L]

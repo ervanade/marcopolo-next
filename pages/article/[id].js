@@ -24,7 +24,21 @@ const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 const ArticlePage = ({article}) => {
     const router = useRouter()
-console.log(article);
+    if (router.isFallback) {
+      return  <div className="loading__section">
+      <ThreeDots
+        height="80"
+        width="80"
+        radius="9"
+        color="#151515"
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+      />
+    </div>;
+    }
+// console.log(article);
   const { id } = router.query
 //   const [article, setArticle] = useState(null);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
@@ -153,21 +167,7 @@ console.log(article);
           <div className="article__content">
             {article?.content &&
               parse(HTMLDecoderEncoder.decode(article?.content))}
-            {/* 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum velit quas voluptate corporis! Adipisci facere, id reiciendis quibusdam aperiam dolorum molestiae ut eveniet esse consequuntur inventore illum totam aspernatur nisi!
-    Repellat temporibus qui, numquam explicabo, veniam ullam a repellendus est adipisci, totam optio tenetur pariatur eius blanditiis officiis nulla nobis expedita deleniti ut error sequi enim? Vero in eligendi ducimus.
-    Culpa earum nulla repudiandae, commodi cum eum obcaecati quasi, minima eaque nobis maiores ducimus omnis quae. Aspernatur nemo eveniet aperiam amet. Ullam voluptate expedita, amet accusamus beatae error nisi commodi?
-    Atque molestiae quae quis et sit aspernatur suscipit, officiis qui, ipsam velit eius, impedit omnis odit rem consequatur? Corrupti ratione perferendis libero magni incidunt ipsa hic cupiditate facere accusantium delectus.
-    Voluptatem autem soluta mollitia, quo corporis, aliquid officiis voluptate harum suscipit fugit, ea aspernatur ab consequuntur modi. Sequi asperiores similique, quos, dignissimos nemo architecto, sed reprehenderit iure laboriosam alias expedita.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium nobis quidem modi eum ipsa quasi corporis voluptatum cumque ad quod. Placeat deserunt iste nobis incidunt necessitatibus in. Error, ea soluta!
-    Laborum architecto soluta asperiores perspiciatis alias numquam nesciunt quo dolores nisi, qui, aperiam placeat quidem tempore veniam aspernatur beatae. Voluptate, tenetur rem architecto numquam ullam nesciunt dolor sunt dolorum nihil?
-    Necessitatibus recusandae repudiandae aperiam. Maiores iste impedit blanditiis reiciendis magnam delectus accusantium consequatur, consequuntur repellendus, labore optio quo! Numquam voluptate consequatur maiores asperiores omnis laboriosam repudiandae ratione nam est ducimus!
-    Amet, soluta doloremque officiis ducimus ullam delectus consequatur sit pariatur fuga, hic accusantium veritatis eum nobis quibusdam quas et! Excepturi ut deleniti iste eius quos repudiandae temporibus dolor reiciendis! Quasi!
-    Non nemo necessitatibus perferendis vitae laborum ullam quo dolor, eius magnam! Commodi reiciendis illo iusto vero quos, odit id! Sunt nesciunt optio sequi hic unde at vel mollitia doloremque cum?
-    Animi, magni beatae dicta temporibus eos provident atque aspernatur illo sequi soluta porro! Expedita reiciendis minima veritatis quibusdam natus sapiente repellat, nemo optio voluptatibus tempore praesentium distinctio officiis excepturi modi.</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste assumenda dolor molestiae? Molestiae itaque temporibus magni adipisci, iste possimus pariatur reprehenderit quibusdam maiores excepturi commodi at dolores nulla quidem quo.
-    Magni hic, eaque doloribus commodi modi facere atque minus fugiat recusandae dolore ea delectus veniam reiciendis accusantium, quia dignissimos qui ipsa voluptatem voluptate ducimus nobis! Dicta laboriosam consequatur velit impedit?
-    Ipsum tempora dicta tempore porro esse delectus, minima sed, veritatis iusto consequatur distinctio quos quas perspiciatis ex adipisci hic inventore. Id voluptas cupiditate quas? Veritatis non laudantium exercitationem officia iure!</p> */}
+           
 
             <p>By Admin</p>
           </div>
@@ -264,5 +264,24 @@ export async function getServerSideProps({params}) {
       },
     };
   }
+// export async function getStaticPaths() {
+//   const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_KEY}/article`);
+//   const articles = await res.data.data
+  
+//   const paths = articles?.map((article) => ({
+//     params: { id: article.id },
+//   }));
 
+//   return { paths, fallback: true };
+// }
+
+// export async function getStaticProps({ params }) {
+//   const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${params.id}`);
+//   const article = await res.data.data[0]
+
+//   return {
+//     props: { article },
+//     revalidate: 5 * 3600, // Re-generate the page every 1 second (while user traffic occurs)
+//   };
+// }
 export default ArticlePage;

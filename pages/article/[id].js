@@ -7,6 +7,7 @@ import parse from "html-react-parser";
 import Link from "next/link";
 import { useRouter } from 'next/router'
 import Head from 'next/head';
+import nprogress from '../../lib/nprogress';
 
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
@@ -254,10 +255,10 @@ const ArticlePage = ({article}) => {
 };
 
 export async function getServerSideProps({params}) {
-
+  nprogress.start();
     const res = await axios.get(`https://api.adventureranddiscoverer.com/api/article/${params.id}`);
   const data = await res.data.data[0];
-  
+  nprogress.done();
     return {
       props: {
         article: data,

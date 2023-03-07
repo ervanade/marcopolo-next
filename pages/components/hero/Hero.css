@@ -3,6 +3,7 @@
     height: 85vh;
     width: 100%;
     /* position: relative; */
+    object-position: 0% 0%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -61,32 +62,7 @@ text-shadow: 1px 1px 1px #919191,
     /* box-shadow: 0 5px 10px rgba(0, 0, 0, .1); */
     /* background: rgba(0, 0, 0, .5); */
 }
-/* .hero .text_cover {
-    color: white;
-    font-family: 'Urbanist';
-    font-size: 60px;
-    line-height: 60px;
-    font-weight: 700;
-    
-    
-} */
-/* .hero__text button {
-    font-family: 'Urbanist';
-    font-size: 36px;
-    line-height: 36px;
-    font-weight: 700;
-    color: rgba(0, 0, 0, 0.8);
-    margin-top: 30px;
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    background: #DA3131;
-    padding: 15px 30px;
-} */
-/* .hero__text button:hover { 
-color: black;
-background: #DA3131;
-} */
+
 .hero .article-card {
     /* background-color: white; */
     /* overflow-x: auto; */
@@ -101,30 +77,7 @@ background: #DA3131;
 .hero__text .card__description {
      height: 210px;
 }
-/* .slick-list {margin: 0 -5px !important;}
-.slick-slide>div {
-    padding: 0px 10px 10px 0px !important;
-} */
-/* .slick-dots {
-    margin-top: 50px;
-}
-.slick-dots li button:before {
-    color: #DA3131!important;
-  }
-  .slick-dots li.slick-active button:before {
-    color:#DA3131 !important;
-}
-.slick-dots li button:before
-    {
-        font-family: 'slick';
-        font-size: 24px!important;
-        line-height: 20px!important;
-    }
-    .slick-dots li button:before
-    {
-        font-size: 24px!important;
-        line-height: 20px!important;
-    } */
+
 .slick-arrow {
     position: absolute;
     bottom: -100px;

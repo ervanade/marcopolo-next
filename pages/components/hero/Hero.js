@@ -141,7 +141,7 @@ useEffect(() => {
       {/* <button>Read More</button> */}
       <div className="article-card">
       <Slider {...settingsCard}>
-      { article ? article.map((item, index ) => {
+      { article ? article?.slice(0, 6).map((item, index ) => {
         return (
            <div index={index}>
             

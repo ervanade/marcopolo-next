@@ -65,7 +65,7 @@ useEffect(() => {
           <div className="card__article mt-50">
           <div className="card__article__image">
 
-            <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_slider}`} alt="article_image" />
+            <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt="article_image" />
           </div>
             <div className="card__description"><h1>{`${item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 8).join(" "))} ${item?.title.split(" ").length <= 9 ? '' : '...'}`}</h1><p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></div>
            </div>

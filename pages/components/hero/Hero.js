@@ -148,7 +148,7 @@ useEffect(() => {
            <div className="card__article">
              <div className="card__article__image">
              <Link draggable="true" onDragStart={handleDragStart} href={`/article/${item?.id}-${item?.slug}`}>
-             <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_slider}`} alt={`gambar-${item?.title && HTMLDecoderEncoder.decode((item?.title))}`} />
+             <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt={`gambar-${item?.title && HTMLDecoderEncoder.decode((item?.title))}`} />
             </Link>
              </div>
              <div className="card__description">

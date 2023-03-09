@@ -8,11 +8,11 @@ const nextConfig = {
 }
 module.exports = {
   exportPathMap: async function (defaultPathMap) {
-    const dynamicRoutes = await fs.readdirSync('./pages/articles');
+    const dynamicRoutes = await fs.readdirSync('./pages/article');
     const dynamicRoutesMap = dynamicRoutes.reduce((acc, route) => {
       if (route.endsWith('.js')) {
         const name = route.replace(/\.js$/, '');
-        acc[`/article/${name}`] = { page: '/articles/[id]', query: { id: name } };
+        acc[`/article/${name}`] = { page: '/article/[id]', query: { id: name } };
       }
       return acc;
     }, {});

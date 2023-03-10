@@ -154,7 +154,7 @@ const ArticlePage = ({article}) => {
             {article?.publish_at &&
               format(parseISO(article?.publish_at), "yyyy MMM dd")}{" "}
             -{" "}
-            <Link href={`/category/${article?.category}`}>
+            <Link href={`/category/${article?.category}-${article?.category_name}`}>
               {article?.category_name &&
                 HTMLDecoderEncoder.decode(article?.category_name)}
             </Link>

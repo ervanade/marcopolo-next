@@ -6,7 +6,7 @@ const Footer = () => {
     <div className='section__footer'>
         <div className="container">
             <div className="wrapper__footer">
-                <div className="logo"><img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/ghw_icon.png`} alt="asdsa" /></div>
+                <div className="logo"><img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/ghw_icon.png`} alt="gambar_bahaya_merokok" /></div>
                 <div className='perhatian_footer'>
                   <h1>PERINGATAN:</h1>
                   <h1>KARENA MEROKOK, SAYA TERKENA KANKER TENGGOROKAN. LAYANAN BERHENTI MEROKOK</h1>

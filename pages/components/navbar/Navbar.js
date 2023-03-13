@@ -49,7 +49,7 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
         <div className="container">
 
         <div className="navbar__wrapper">
-        <div className="header__left"><div className='logo'><Link href="/"><img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/Marcopolo-Logo.png`} alt="s" /></Link></div> 
+        <div className="header__left"><div className='logo'><Link href="/"><img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/Marcopolo-Logo.png`} alt="logo" /></Link></div> 
             </div>
         <div className="header__right">
           <div className="nav__links">

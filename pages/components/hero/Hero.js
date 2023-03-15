@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 // import './Hero.css'
 import Slider from "react-slick";
-import { Row, Col } from 'react-bootstrap'
 import  Link from 'next/link';
 import { MdTravelExplore } from 'react-icons/md';
 // import { Article as article } from '../../data';
@@ -143,7 +142,7 @@ useEffect(() => {
       <Slider {...settingsCard}>
       { article ? article?.slice(0, 6).map((item, index ) => {
         return (
-           <div index={index}>
+           <div key={index}>
             
            <div className="card__article">
              <div className="card__article__image">

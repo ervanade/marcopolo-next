@@ -4,7 +4,22 @@ const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'adventureranddiscoverer.com',
+        port: '',
+        pathname: '/assets',
+      },
+    ],
+  },
   
+}
+module.exports = {
+  images: {
+      domains: ['adventureranddiscoverer.com'],
+  },
 }
 module.exports = {
   exportPathMap: async function (defaultPathMap) {
@@ -24,6 +39,7 @@ module.exports = {
       ...dynamicRoutesMap,
     };
   },
+  
 };
 
 module.exports = nextConfig

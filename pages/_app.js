@@ -13,9 +13,7 @@ import './components/modal/Modal.css'
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
 
-import Navbar from './components/navbar/Navbar';
 
-import Footer from './components/footer/Footer';
 import './components/footer/Footer.css'
 import Layout from './components/Layout';
 import TagManager from 'react-gtm-module';

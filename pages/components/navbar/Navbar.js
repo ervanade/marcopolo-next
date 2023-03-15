@@ -49,7 +49,15 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
         <div className="container">
 
         <div className="navbar__wrapper">
-        <div className="header__left"><div className='logo'><Link href="/"><img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/Marcopolo-Logo.png`} alt="logo" /></Link></div> 
+        <div className="header__left"><div className='logo'><Link href="/">
+          {/* <Image
+      src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/Marcopolo-Logo.png`}
+      alt="logo"
+      width={154}
+      height={65}
+    /> */}
+    <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/Marcopolo-Logo.png`} alt="logo" />
+    </Link></div> 
             </div>
         <div className="header__right">
           <div className="nav__links">
@@ -63,7 +71,7 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
           </div>
         <div className='searchbar'>
       
-            <button classname="button__bars" name="button__bars" onClick={buttonOnChangeBars}><FaBars className='navbar__icon'/></button>
+            <button className="button__bars" name="button__bars" onClick={buttonOnChangeBars} aria-label="bars"><FaBars className='navbar__icon'/></button>
             </div>
            
         </div>
@@ -72,7 +80,7 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
     
     <div className={`navbar_overlay ${menuButton ? `show` : ``}`}>
             <ul className='nav_ul'>
-            <button onClick={buttonOnChangeClose} classname="button__close__navbar" name="button__close__navbar"><FaTimes className='navbar__icon'/></button>
+            <button onClick={buttonOnChangeClose} className="button__close__navbar" name="button__close__navbar" aria-label="button__close__navbar"><FaTimes className='navbar__icon'/></button>
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/article">Articles</Link></li>
                 <li><Link href="/testimoni">Testimony</Link></li>

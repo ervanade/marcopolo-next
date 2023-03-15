@@ -6,7 +6,6 @@ import { MdOutlineExplore, MdTravelExplore} from "react-icons/md";
 import { BsArrowRightShort } from "react-icons/bs";
 import { ThreeDots } from 'react-loader-spinner'
 import axios from 'axios';
-import { Helmet } from 'react-helmet';
 import Head from 'next/head';
 // import { Article as article} from '../data';
 

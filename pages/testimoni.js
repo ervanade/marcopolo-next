@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react'
 import Slider from "react-slick";
 
 import { Row, Col } from 'react-bootstrap'
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 
 const Testi = () => {
   const [windowSize, setWindowSize] = useState([
@@ -44,11 +44,11 @@ const Testi = () => {
   }, [windowSize[0]])
   return (
     <div className="testi">
-      <Helmet>
+      <Head>
         <title>{`Adventurer & Discoverer - Testimony`}</title>
         <meta name="description" content={`Adventurer & Discoverer - Testimony`}/>
         <meta name="keywords" content={`Adventurer & Discoverer - Testimony`} />
-      </Helmet>
+      </Head>
 
     {/* <div className='overlay__background'>
     </div> */}

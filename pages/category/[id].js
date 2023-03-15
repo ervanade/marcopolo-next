@@ -5,7 +5,6 @@ import { MdOutlineExplore, MdTravelExplore} from "react-icons/md";
 import { BsArrowRightShort } from "react-icons/bs";
 import { ThreeDots } from 'react-loader-spinner'
 import axios from 'axios';
-import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
 import Head from 'next/head';
 import { useRouter } from 'next/router';

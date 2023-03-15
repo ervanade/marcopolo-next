@@ -12,7 +12,6 @@ import nprogress from '../../lib/nprogress';
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import { format, parseISO } from "date-fns";
-import { Helmet } from "react-helmet";
 import {
   FacebookShareButton,
   TelegramShareButton,

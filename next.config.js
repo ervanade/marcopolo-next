@@ -14,12 +14,16 @@ const nextConfig = {
       },
     ],
   },
+  compress: true,
+
   
 }
 module.exports = {
   images: {
       domains: ['adventureranddiscoverer.com'],
   },
+  mode: 'production',
+  productionBrowserSourceMaps: false,
 }
 module.exports = {
   exportPathMap: async function (defaultPathMap) {

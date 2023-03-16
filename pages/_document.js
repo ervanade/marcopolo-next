@@ -36,6 +36,23 @@ export default function Document() {
                }(document, 'script', 'facebook-jssdk'));
             `,
           }} strategy="afterInteractive"/>
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=DC-10827733"
+          strategy="afterInteractive"
+        />
+        <Script
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'DC-10827733');
+            `,
+          }}
+        />
         {/* <script
           dangerouslySetInnerHTML={{
             __html: `

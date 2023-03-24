@@ -59,7 +59,7 @@ useEffect(() => {
     <Row className='card__wrapper gx-5'>
       { article ? article?.slice(0, perPage).map((item, index ) => {
         return (
-          <Col md='4' sm='6' index={index}>
+          <Col md='4' sm='6' key={index}>
           <Link href={`/article/${item?.id}-${item?.slug}`}>
           <div className="card__article mt-50">
           <div className="card__article__image">

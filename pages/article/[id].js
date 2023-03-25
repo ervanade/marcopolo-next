@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 // import "./ArticlePage.css";
-import { Row, Col } from "react-bootstrap";
 // import { Article } from "../data";
 import parse from "html-react-parser";
 // import { useParams, Link } from "react-router-dom";
@@ -17,7 +16,6 @@ import {
   TelegramShareButton,
   TwitterShareButton,
   WhatsappShareButton,
-  WorkplaceShareButton,
 } from "react-share";
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");

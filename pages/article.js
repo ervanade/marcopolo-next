@@ -87,9 +87,12 @@ visible={true}
     }
         
     </Row>
-    <div className="button-load-more">
-      <button onClick={handleLoadMore}>LOAD MORE</button>
-    </div>
+    { article && article.length > perPage ?
+  <div className="button-load-more">
+    <button onClick={handleLoadMore}>LOAD MORE</button>
+  </div>
+  : null
+}
     </div>
   </div>
   )

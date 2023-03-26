@@ -114,7 +114,7 @@ useEffect(() => {
       }
     }, [windowSize[0]])
     
-    console.log(windowSize[0]);
+    // console.log(windowSize[0]);
 
     const handleDragStart = (event) => {
       event.preventDefault();

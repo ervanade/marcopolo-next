@@ -251,17 +251,36 @@ const ArticlePage = ({article}) => {
   );
 };
 
-export async function getServerSideProps({params}) {
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
   nprogress.start();
-    const res = await axios.get(`https://api.adventureranddiscoverer.com/api/article/${params.id}`);
+  const res = await axios.get(`https://api.adventureranddiscoverer.com/api/article/${params.id}`);
   const data = await res.data.data[0];
   nprogress.done();
-    return {
-      props: {
-        article: data,
-      },
-    };
-  }
+  return {
+    props: {
+      article: data,
+    },
+    revalidate: 60 * 3,
+  };
+}
+// export async function getServerSideProps({params}) {
+//   nprogress.start();
+//     const res = await axios.get(`https://api.adventureranddiscoverer.com/api/article/${params.id}`);
+//   const data = await res.data.data[0];
+//   nprogress.done();
+//     return {
+//       props: {
+//         article: data,
+//       },
+//     };
+//   }
 // export async function getStaticPaths() {
 //   const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_KEY}/article`);
 //   const articles = await res.data.data

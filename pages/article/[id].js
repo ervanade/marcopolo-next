@@ -260,15 +260,21 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   nprogress.start();
-  const res = await axios.get(`https://api.adventureranddiscoverer.com/api/article/${params.id}`);
-  const data = await res.data.data[0];
-  nprogress.done();
-  return {
-    props: {
-      article: data,
-    },
-    revalidate: 60 * 3,
-  };
+  try {
+    const res = await axios.get(`https://api.adventureranddiscoverer.com/api/article/${params.id}`);
+    const data = await res.data.data[0];
+    nprogress.done();
+    return {
+      props: {
+        article: data,
+      },
+      revalidate: 60 * 3,
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
 }
 // export async function getServerSideProps({params}) {
 //   nprogress.start();

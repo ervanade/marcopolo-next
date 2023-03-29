@@ -34,8 +34,8 @@ export default function Home() {
     <>
       <Head>
       <title>{`Adventurer & Discoverer - Home`}</title>
-        <meta name="description" content={`Adventurer & Discoverer - Home`}/>
-        <meta name="keywords" content={`Adventurer & Discoverer - Home`} />
+        <meta name="description" content={`Temukan Konten Setiap Hari Penuh Eksplorasi serta Panduan Inspirasi Adventurer and Discoverer di website resmi Marcopolo`}/>
+        <meta name="keywords" content={`Temukan Konten Setiap Hari Penuh Eksplorasi serta Panduan Inspirasi Adventurer and Discoverer di website resmi Marcopolo`} />
         <link rel="icon" href="/marcopolo__favicon.png" />
       </Head>
       {/* <h1>tes</h1> */}

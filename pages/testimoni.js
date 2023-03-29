@@ -46,8 +46,8 @@ const Testi = () => {
     <div className="testi">
       <Head>
         <title>{`Adventurer & Discoverer - Testimony`}</title>
-        <meta name="description" content={`Adventurer & Discoverer - Testimony`}/>
-        <meta name="keywords" content={`Adventurer & Discoverer - Testimony`} />
+        <meta name="description" content={`Dengarkan pendapat Mereka Tentang Rekomendasi Travel & Hari-Hari Penuh Eksplorasi Petualang di Indonesia`}/>
+        <meta name="keywords" content={`Dengarkan pendapat Mereka Tentang Rekomendasi Travel & Hari-Hari Penuh Eksplorasi Petualang di Indonesia`} />
       </Head>
 
     {/* <div className='overlay__background'>

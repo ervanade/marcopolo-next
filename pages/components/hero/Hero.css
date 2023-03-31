@@ -292,10 +292,6 @@ text-shadow: 1px 1px 1px #919191,
         line-height: 52px;
         font-weight: 700;
     }
-    .hero__text button {
-        font-size: 24px;
-        line-height: 24px;
-    }
   
     .slick-arrow {
         position: absolute;
@@ -420,6 +416,5 @@ text-shadow: 1px 1px 1px #919191,
         height: 32px !important;
         padding: 4px;
     }
-    
 
 }

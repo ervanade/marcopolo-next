@@ -18,7 +18,7 @@ import {
   WhatsappShareButton,
 } from "react-share";
 
-// const HTMLDecoderEncoder = require("html-encoder-decoder");
+const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 const ArticlePage = ({article}) => {
     const router = useRouter()
@@ -70,26 +70,26 @@ const ArticlePage = ({article}) => {
         <div className="container">
           <Head 
           defer={false}
-          title={article?.title && (article?.title)}
+          title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
           defaultTitle={
-            article?.title && (article?.title)
+            article?.title && HTMLDecoderEncoder.decode(article?.title)
           }
           titleTemplate={`%s`}
           meta={[
             {
               name: 'description',
               content: article?.meta_description &&
-              (article?.meta_description),
+              HTMLDecoderEncoder.decode(article?.meta_description),
             },
             {
               name: 'keywords',
               content: article?.meta_keywords &&
-              (article?.meta_keywords),
+              HTMLDecoderEncoder.decode(article?.meta_keywords),
             },
             {
               name: 'og:description',
               content: article?.meta_description &&
-              (article?.meta_description),
+              HTMLDecoderEncoder.decode(article?.meta_description),
             },
             {
               name: 'og:image',
@@ -107,20 +107,20 @@ const ArticlePage = ({article}) => {
            ]}
           >
             <title>{`Adventurer & Discoverer - Article - ${
-              article?.title && (article?.title)
+              article?.title && HTMLDecoderEncoder.decode(article?.title)
             }`}</title>
             <meta
               name="description"
               content={
                 article?.meta_description &&
-                (article?.meta_description)
+                HTMLDecoderEncoder.decode(article?.meta_description)
               }
             />
             <meta
               name="keywords"
               content={`${
                 article?.meta_keywords &&
-                (article?.meta_keywords)
+                HTMLDecoderEncoder.decode(article?.meta_keywords)
               }`}
             />
              <meta property="og:url" content={currentUrl} />
@@ -134,32 +134,32 @@ const ArticlePage = ({article}) => {
     	<meta property="og:image:height" content="366" />
       
                
-        <meta property="og:title" content={article?.title && (article?.title)} />
-        <meta property="og:description" content={article?.meta_description && (article?.meta_description)} />
+        <meta property="og:title" content={article?.title && HTMLDecoderEncoder.decode(article?.title)} />
+        <meta property="og:description" content={article?.meta_description && HTMLDecoderEncoder.decode(article?.meta_description)} />
         <meta property="og:image" content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`} />
   
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="Adventurer and Discover" />
         <meta name="twitter:site:id" content="Adventurer and Discoverer" />
         <meta name="twitter:creator" content="Adventurer and Discoverer" />
-        <meta name="twitter:description" content={article?.meta_description && (article?.meta_description)} />
+        <meta name="twitter:description" content={article?.meta_description && HTMLDecoderEncoder.decode(article?.meta_description)} />
         <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`} />
 
           </Head>
-          <h2>{article?.title && (article?.title)}</h2>
+          <h2>{article?.title && HTMLDecoderEncoder.decode(article?.title)}</h2>
           <p>
             {article?.publish_at &&
               format(parseISO(article?.publish_at), "yyyy MMM dd")}{" "}
             -{" "}
             <Link href={`/category/${article?.category}-${article?.category_name}`}>
               {article?.category_name &&
-                (article?.category_name)}
+                HTMLDecoderEncoder.decode(article?.category_name)}
             </Link>
           </p>
           <div className="article__image">
             <img
               src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
-              alt={`gambar-${article?.title && ((article?.title))}`} 
+              alt={`gambar-${article?.title && HTMLDecoderEncoder.decode((article?.title))}`} 
             />
           </div>
           <div className="article__content">
@@ -173,14 +173,14 @@ const ArticlePage = ({article}) => {
           <div className="share__icon">
             <FacebookShareButton
               url={currentUrl}
-              title={article?.title && (article?.title)}
-              quote={article?.title && (article?.title)}
+              title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
+              quote={article?.title && HTMLDecoderEncoder.decode(article?.title)}
               data-share="true"
               data-width="450"
               data-show-faces="true"
               hashtag={`${
                 article?.meta_keywords &&
-                (article?.meta_keywords)
+                HTMLDecoderEncoder.decode(article?.meta_keywords)
               }`}
             >
               <div className="share__icon">
@@ -192,7 +192,7 @@ const ArticlePage = ({article}) => {
             </FacebookShareButton>
             <TwitterShareButton
               url={currentUrl}
-              title={article?.title && (article?.title)}
+              title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
               data-share="true"
               data-width="450"
               data-show-faces="true"
@@ -206,7 +206,7 @@ const ArticlePage = ({article}) => {
             </TwitterShareButton>
             <WhatsappShareButton
               url={currentUrl}
-              title={article?.title && (article?.title)}
+              title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
             >
               <div className="share__icon">
                 <img
@@ -217,7 +217,7 @@ const ArticlePage = ({article}) => {
             </WhatsappShareButton>
             <TelegramShareButton
               url={currentUrl}
-              title={article?.title && (article?.title)}
+              title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
             >
               <div className="share__icon">
                 <img

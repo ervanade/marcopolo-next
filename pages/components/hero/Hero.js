@@ -10,7 +10,7 @@ import axios from 'axios';
 import { BsArrowLeft, BsArrowRight, BsChevronBarLeft, BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 
-const HTMLDecoderEncoder = require("html-encoder-decoder");
+// const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 const Hero = () => {
   const [windowSize, setWindowSize] = useState([
@@ -147,12 +147,12 @@ useEffect(() => {
            <div className="card__article">
              <div className="card__article__image">
              <Link draggable="true" onDragStart={handleDragStart} href={`/article/${item?.id}-${item?.slug}`}>
-             <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt={`gambar-${item?.title && HTMLDecoderEncoder.decode((item?.title))}`} />
+             <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt={`gambar-${item?.title && ((item?.title))}`} />
             </Link>
              </div>
              <div className="card__description">
-              <Link draggable="true" onDragStart={handleDragStart} href={`/article/${item?.id}-${item?.slug}`}><h1>{item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 7).join(" "))}..</h1></Link>
-              <p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p>
+              <Link draggable="true" onDragStart={handleDragStart} href={`/article/${item?.id}-${item?.slug}`}><h1>{item?.title && ((item?.title).split(" ").slice(0, 7).join(" "))}..</h1></Link>
+              <p>{item?.subtitle && ((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p>
               <Link href={`/article/${item?.id}-${item?.slug}`}><button className='button__explore' name="button__explore">Explore<MdTravelExplore className="button__icon" size={20}/></button></Link>
               </div>
             </div>

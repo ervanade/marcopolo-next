@@ -47,7 +47,7 @@ useEffect(() => {
   return (
     <div className="article" style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/background-article-5.jpg")` }}>
       <Head>
-        <title>{`Adventurer & Discoverer - Article`}</title>
+        <title>{`Adventurer and discoverer - Article`}</title>
         <meta name="description" content={`Temukan Beragam Tips dan Trik Artikel Setiap Harinya Penuh Eksplorasi Travel Petualang di Website Marcopolo`}/>
         <meta name="keywords" content={`Temukan Beragam Tips dan Trik Artikel Setiap Harinya Penuh Eksplorasi Travel Petualang di Website Marcopolo`} />
       </Head>

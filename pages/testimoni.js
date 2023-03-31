@@ -45,7 +45,7 @@ const Testi = () => {
   return (
     <div className="testi">
       <Head>
-        <title>{`Adventurer & Discoverer - Testimony`}</title>
+        <title>{`Adventurer and discoverer - Testimoni Adventusias`}</title>
         <meta name="description" content={`Dengarkan pendapat Mereka Tentang Rekomendasi Travel & Hari-Hari Penuh Eksplorasi Petualang di Indonesia`}/>
         <meta name="keywords" content={`Dengarkan pendapat Mereka Tentang Rekomendasi Travel & Hari-Hari Penuh Eksplorasi Petualang di Indonesia`} />
       </Head>

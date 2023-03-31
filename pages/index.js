@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <>
       <Head>
-      <title>{`Adventurer & Discoverer - Home`}</title>
+      <title>{`Adventurer and discoverer - Setiap Hari Penuh Eksplorasi`}</title>
         <meta name="description" content={`Temukan Konten Setiap Hari Penuh Eksplorasi serta Panduan Inspirasi Adventurer and Discoverer di website resmi Marcopolo`}/>
         <meta name="keywords" content={`Temukan Konten Setiap Hari Penuh Eksplorasi serta Panduan Inspirasi Adventurer and Discoverer di website resmi Marcopolo`} />
         <link rel="icon" href="/marcopolo__favicon.png" />

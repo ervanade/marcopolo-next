@@ -71,7 +71,6 @@ const Testi = () => {
 useEffect(() => {
   fetchApiTestimony()
 }, [])
-console.log(testimony);
   return (
     <div className="testi">
       <Head>

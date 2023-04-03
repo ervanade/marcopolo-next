@@ -2,9 +2,13 @@ import React, {useEffect, useState} from 'react'
 // import './Article.css'
 // import './Testi.css'
 import Slider from "react-slick";
+import { ThreeDots } from 'react-loader-spinner'
+import axios from 'axios';
 
 import { Row, Col } from 'react-bootstrap'
 import Head from 'next/head';
+const HTMLDecoderEncoder = require("html-encoder-decoder");
+
 
 const Testi = () => {
   const [windowSize, setWindowSize] = useState([
@@ -42,6 +46,32 @@ const Testi = () => {
       setShowSlide(3)
     }
   }, [windowSize[0]])
+  const [testimony, setTestimony] = useState(null)
+
+
+  const fetchApiTestimony = async () => {
+    try {
+      // eslint-disable-next-line
+      const responseUser = await axios({
+        method: 'get',
+        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/testimony`,    
+      })
+      .then(function (response) {
+          // handle success
+       
+          setTestimony(response.data.data)
+         
+          // console.log(responseUser)
+        })
+    
+    } catch (error) {
+      console.log(error)
+    }
+}
+useEffect(() => {
+  fetchApiTestimony()
+}, [])
+console.log(testimony);
   return (
     <div className="testi">
       <Head>
@@ -55,10 +85,35 @@ const Testi = () => {
   <div className="container">
     <h1>Testimony</h1>
 
-  {/* <div className="article__wrapper"> */}
-    {/* <h1>Article</h1> */}
+
     <Slider {...settingsCardTesti}>
-          <div>
+    { testimony ? testimony?.map((item, index ) => {
+        return (
+          <div key={index}>
+          <div className="card__testi mt-50">
+          <div className="card__testi__image">
+
+          <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt="testimony_image" />
+          </div>
+            <div className="card__description"><h1>{`${item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 8).join(" "))} ${item?.title.split(" ").length <= 9 ? '' : '...'}`}</h1><p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.subtitle))}</p></div>
+           </div>
+          </div>
+        )
+      })
+    : <div className='loading__section'>
+    <ThreeDots 
+height="80" 
+width="80" 
+radius="9"
+color="#151515" 
+ariaLabel="three-dots-loading"
+wrapperStyle={{}}
+wrapperClassName=""
+visible={true}
+/>
+</div>
+    }
+          {/* <div>
           <div className="card__testi mt-50">
           <div className="card__testi__image">
 
@@ -138,7 +193,7 @@ const Testi = () => {
           </div>
             <div className="card__description"><h1>Testimony</h1><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam autem mollitia unde.</p></div>
            </div>
-          </div>
+          </div> */}
         </Slider>
     
     </div>

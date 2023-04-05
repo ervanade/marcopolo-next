@@ -17,12 +17,14 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
+import https from 'https';
+
 // import Skeleton from 'react-loading-skeleton'
 // import 'react-loading-skeleton/dist/skeleton.css'
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
-const ArticlePage = () => {
+const ArticlePage = ({article}) => {
     const router = useRouter()
     if (router.isFallback) {
       return  <div className="loading__section">
@@ -40,29 +42,29 @@ const ArticlePage = () => {
     }
 // console.log(article);
   const id = (router.query.id)?.split('-')[0];
-  const [article, setArticle] = useState(null);
+  // const [article, setArticle] = useState(null);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  const fetchApiArticle = async () => {
-    try {
-      // eslint-disable-next-line
-      const responseUser = await axios({
-        method: "get",
-        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
-      }).then(function (response) {
-        setArticle(response.data.data[0]);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchApiArticle = async () => {
+  //   try {
+  //     // eslint-disable-next-line
+  //     const responseUser = await axios({
+  //       method: "get",
+  //       url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
+  //     }).then(function (response) {
+  //       setArticle(response.data.data[0]);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
     const handleClick = () => {
       navigator.clipboard.writeText(currentUrl);
     };
 
-  useEffect(() => {
-    fetchApiArticle();
-  }, [id]);
+  // useEffect(() => {
+  //   fetchApiArticle();
+  // }, [id]);
 
   return (
     <div className="article-page">
@@ -282,7 +284,11 @@ const ArticlePage = () => {
 // export async function getStaticProps({ params }) {
 //   nprogress.start();
 //   try {
-//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/article/${params.id}`);
+//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/article/${params.id}`, { 
+//       httpsAgent: new https.Agent({  
+//         rejectUnauthorized: false
+//       })
+//     });
 //     const data = await res.data.data[0];
 //     nprogress.done();
 //     return {
@@ -297,17 +303,29 @@ const ArticlePage = () => {
 //     };
 //   }
 // }
-// export async function getServerSideProps({params}) {
-//   nprogress.start();
-//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`);
-//   const data = await res.data.data[0];
-//   console.log(data);
-//   nprogress.done();
-//     return {
-//       props: {
-//         article: data,
-//       },
-//     };
-//   }
+export async function getServerSideProps({ params }) {
+  nprogress.start();
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+  });
+  try {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
+      httpsAgent: agent,
+    });
+    const data = await res.data.data[0];
+    nprogress.done();
+    return {
+      props: {
+        article: data,
+      },
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
+}
+
+
 
 export default ArticlePage;

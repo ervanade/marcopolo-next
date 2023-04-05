@@ -40,7 +40,6 @@ const ArticlePage = () => {
     }
 // console.log(article);
   const id = (router.query.id)?.split('-')[0];
-  console.log(id);
   const [article, setArticle] = useState(null);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 

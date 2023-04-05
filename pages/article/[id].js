@@ -20,7 +20,7 @@ import {
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
-const ArticlePage = ({article}) => {
+const ArticlePage = () => {
     const router = useRouter()
     if (router.isFallback) {
       return  <div className="loading__section">
@@ -38,29 +38,29 @@ const ArticlePage = ({article}) => {
     }
 // console.log(article);
   const { id } = router.query
-//   const [article, setArticle] = useState(null);
+  const [article, setArticle] = useState(null);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-//   const fetchApiArticle = async () => {
-//     try {
-//       // eslint-disable-next-line
-//       const responseUser = await axios({
-//         method: "get",
-//         url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
-//       }).then(function (response) {
-//         setArticle(response.data.data[0]);
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+  const fetchApiArticle = async () => {
+    try {
+      // eslint-disable-next-line
+      const responseUser = await axios({
+        method: "get",
+        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
+      }).then(function (response) {
+        setArticle(response.data.data[0]);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
     const handleClick = () => {
       navigator.clipboard.writeText(currentUrl);
     };
 
-//   useEffect(() => {
-//     fetchApiArticle();
-//   }, []);
+  useEffect(() => {
+    fetchApiArticle();
+  }, []);
 
   return (
     <div className="article-page">
@@ -251,35 +251,36 @@ const ArticlePage = ({article}) => {
   );
 };
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: true,
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [],
+//     fallback: true,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  nprogress.start();
-  try {
-    const res = await axios.get(`https://api.adventureranddiscoverer.com/api/article/${params.id}`);
-    const data = await res.data.data[0];
-    nprogress.done();
-    return {
-      props: {
-        article: data,
-      },
-      revalidate: 60 * 3,
-    };
-  } catch (err) {
-    return {
-      notFound: true,
-    };
-  }
-}
+// export async function getStaticProps({ params }) {
+//   nprogress.start();
+//   try {
+//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/article/${params.id}`);
+//     const data = await res.data.data[0];
+//     nprogress.done();
+//     return {
+//       props: {
+//         article: data,
+//       },
+//       revalidate: 60 * 3,
+//     };
+//   } catch (err) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+// }
 // export async function getServerSideProps({params}) {
 //   nprogress.start();
-//     const res = await axios.get(`https://api.adventureranddiscoverer.com/api/article/${params.id}`);
+//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`);
 //   const data = await res.data.data[0];
+//   console.log(data);
 //   nprogress.done();
 //     return {
 //       props: {
@@ -287,24 +288,5 @@ export async function getStaticProps({ params }) {
 //       },
 //     };
 //   }
-// export async function getStaticPaths() {
-//   const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_KEY}/article`);
-//   const articles = await res.data.data
-  
-//   const paths = articles?.map((article) => ({
-//     params: { id: article.id },
-//   }));
 
-//   return { paths, fallback: true };
-// }
-
-// export async function getStaticProps({ params }) {
-//   const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${params.id}`);
-//   const article = await res.data.data[0]
-
-//   return {
-//     props: { article },
-//     revalidate: 5 * 3600, // Re-generate the page every 1 second (while user traffic occurs)
-//   };
-// }
 export default ArticlePage;

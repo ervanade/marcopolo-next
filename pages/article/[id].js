@@ -17,8 +17,8 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+// import Skeleton from 'react-loading-skeleton'
+// import 'react-loading-skeleton/dist/skeleton.css'
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
@@ -236,37 +236,37 @@ const ArticlePage = () => {
           <hr />
         </div>
       ) : (
-        // <div className="loading__section">
-        //   <ThreeDots
-        //     height="80"
-        //     width="80"
-        //     radius="9"
-        //     color="#151515"
-        //     ariaLabel="three-dots-loading"
-        //     wrapperStyle={{}}
-        //     wrapperClassName=""
-        //     visible={true}
-        //   />
-        // </div>
-        <div className="container">
-    
-        <h2><Skeleton /></h2>
-        <p>
-        <Skeleton />
-        </p>
-        <div className="article__image">
-        <Skeleton height={500} />
+        <div className="loading__section">
+          <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="#151515"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+          />
         </div>
-        <div className="article__content">
-        <p><Skeleton count={10} /></p>
+      //   <div className="container">
+    
+      //   <h2><Skeleton /></h2>
+      //   <p>
+      //   <Skeleton />
+      //   </p>
+      //   <div className="article__image">
+      //   <Skeleton height={500} />
+      //   </div>
+      //   <div className="article__content">
+      //   <p><Skeleton count={10} /></p>
          
 
-          <p>By Admin</p>
-        </div>
+      //     <p>By Admin</p>
+      //   </div>
    
        
-        <hr />
-      </div>
+      //   <hr />
+      // </div>
       )}
     </div>
   );

@@ -19,12 +19,12 @@ import {
 } from "react-share";
 import https from 'https';
 
-// import Skeleton from 'react-loading-skeleton'
-// import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
-const ArticlePage = ({article}) => {
+const ArticlePage = () => {
     const router = useRouter()
     if (router.isFallback) {
       return  <div className="loading__section">
@@ -42,29 +42,29 @@ const ArticlePage = ({article}) => {
     }
 // console.log(article);
   const id = (router.query.id)?.split('-')[0];
-  // const [article, setArticle] = useState(null);
+  const [article, setArticle] = useState(null);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  // const fetchApiArticle = async () => {
-  //   try {
-  //     // eslint-disable-next-line
-  //     const responseUser = await axios({
-  //       method: "get",
-  //       url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
-  //     }).then(function (response) {
-  //       setArticle(response.data.data[0]);
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const fetchApiArticle = async () => {
+    try {
+      // eslint-disable-next-line
+      const responseUser = await axios({
+        method: "get",
+        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
+      }).then(function (response) {
+        setArticle(response.data.data[0]);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
     const handleClick = () => {
       navigator.clipboard.writeText(currentUrl);
     };
 
-  // useEffect(() => {
-  //   fetchApiArticle();
-  // }, [id]);
+  useEffect(() => {
+    fetchApiArticle();
+  }, [id]);
 
   return (
     <div className="article-page">
@@ -72,43 +72,43 @@ const ArticlePage = ({article}) => {
     </div> */}
       {article ? (
         <div className="container">
-          <Head 
-          defer={false}
-          title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
-          defaultTitle={
-            article?.title && HTMLDecoderEncoder.decode(article?.title)
-          }
-          titleTemplate={`%s`}
-          meta={[
-            {
-              name: 'description',
-              content: article?.meta_description &&
-              HTMLDecoderEncoder.decode(article?.meta_description),
-            },
-            {
-              name: 'keywords',
-              content: article?.meta_keywords &&
-              HTMLDecoderEncoder.decode(article?.meta_keywords),
-            },
-            {
-              name: 'og:description',
-              content: article?.meta_description &&
-              HTMLDecoderEncoder.decode(article?.meta_description),
-            },
-            {
-              name: 'og:image',
-              content: `${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`,
-            },
-        
-          ]
-          
-          }
-          links={[
-            {
-                 rel: 'article',
-                 href: currentUrl,
-             },
-           ]}
+          <Head
+            defer={false}
+            title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
+            defaultTitle={
+              article?.title && HTMLDecoderEncoder.decode(article?.title)
+            }
+            titleTemplate={`%s`}
+            meta={[
+              {
+                name: "description",
+                content:
+                  article?.meta_description &&
+                  HTMLDecoderEncoder.decode(article?.meta_description),
+              },
+              {
+                name: "keywords",
+                content:
+                  article?.meta_keywords &&
+                  HTMLDecoderEncoder.decode(article?.meta_keywords),
+              },
+              {
+                name: "og:description",
+                content:
+                  article?.meta_description &&
+                  HTMLDecoderEncoder.decode(article?.meta_description),
+              },
+              {
+                name: "og:image",
+                content: `${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`,
+              },
+            ]}
+            links={[
+              {
+                rel: "article",
+                href: currentUrl,
+              },
+            ]}
           >
             <title>{`Adventurer & Discoverer - Article - ${
               article?.title && HTMLDecoderEncoder.decode(article?.title)
@@ -127,35 +127,58 @@ const ArticlePage = ({article}) => {
                 HTMLDecoderEncoder.decode(article?.meta_keywords)
               }`}
             />
-             <meta property="og:url" content={currentUrl} />
-             <meta content={currentUrl} itemprop="url" />
+            <meta property="og:url" content={currentUrl} />
+            <meta content={currentUrl} itemprop="url" />
 
-             <meta property="og:type" content="article" />
-             <meta property="og:site_name" content="article" />  
+            <meta property="og:type" content="article" />
+            <meta property="og:site_name" content="article" />
 
-             <meta property="og:image:type" content="image/jpg" />
-    	<meta property="og:image:width" content="650" />
-    	<meta property="og:image:height" content="366" />
-      
-               
-        <meta property="og:title" content={article?.title && HTMLDecoderEncoder.decode(article?.title)} />
-        <meta property="og:description" content={article?.meta_description && HTMLDecoderEncoder.decode(article?.meta_description)} />
-        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`} />
-  
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="Adventurer and Discover" />
-        <meta name="twitter:site:id" content="Adventurer and Discoverer" />
-        <meta name="twitter:creator" content="Adventurer and Discoverer" />
-        <meta name="twitter:description" content={article?.meta_description && HTMLDecoderEncoder.decode(article?.meta_description)} />
-        <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`} />
+            <meta property="og:image:type" content="image/jpg" />
+            <meta property="og:image:width" content="650" />
+            <meta property="og:image:height" content="366" />
 
+            <meta
+              property="og:title"
+              content={
+                article?.title && HTMLDecoderEncoder.decode(article?.title)
+              }
+            />
+            <meta
+              property="og:description"
+              content={
+                article?.meta_description &&
+                HTMLDecoderEncoder.decode(article?.meta_description)
+              }
+            />
+            <meta
+              property="og:image"
+              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
+            />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="Adventurer and Discover" />
+            <meta name="twitter:site:id" content="Adventurer and Discoverer" />
+            <meta name="twitter:creator" content="Adventurer and Discoverer" />
+            <meta
+              name="twitter:description"
+              content={
+                article?.meta_description &&
+                HTMLDecoderEncoder.decode(article?.meta_description)
+              }
+            />
+            <meta
+              name="twitter:image"
+              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
+            />
           </Head>
           <h2>{article?.title && HTMLDecoderEncoder.decode(article?.title)}</h2>
           <p>
             {article?.publish_at &&
               format(parseISO(article?.publish_at), "yyyy MMM dd")}{" "}
             -{" "}
-            <Link href={`/category/${article?.category}-${article?.category_name}`}>
+            <Link
+              href={`/category/${article?.category}-${article?.category_name}`}
+            >
               {article?.category_name &&
                 HTMLDecoderEncoder.decode(article?.category_name)}
             </Link>
@@ -163,13 +186,13 @@ const ArticlePage = ({article}) => {
           <div className="article__image">
             <img
               src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
-              alt={`gambar-${article?.title && HTMLDecoderEncoder.decode((article?.title))}`} 
+              alt={`gambar-${
+                article?.title && HTMLDecoderEncoder.decode(article?.title)
+              }`}
             />
           </div>
           <div className="article__content">
-            {article?.content &&
-              parse((article?.content))}
-           
+            {article?.content && parse(article?.content)}
 
             <p>By Admin</p>
           </div>
@@ -177,8 +200,12 @@ const ArticlePage = ({article}) => {
           <div className="share__icon">
             <FacebookShareButton
               url={currentUrl}
-              title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
-              quote={article?.title && HTMLDecoderEncoder.decode(article?.title)}
+              title={
+                article?.title && HTMLDecoderEncoder.decode(article?.title)
+              }
+              quote={
+                article?.title && HTMLDecoderEncoder.decode(article?.title)
+              }
               data-share="true"
               data-width="450"
               data-show-faces="true"
@@ -196,7 +223,9 @@ const ArticlePage = ({article}) => {
             </FacebookShareButton>
             <TwitterShareButton
               url={currentUrl}
-              title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
+              title={
+                article?.title && HTMLDecoderEncoder.decode(article?.title)
+              }
               data-share="true"
               data-width="450"
               data-show-faces="true"
@@ -210,7 +239,9 @@ const ArticlePage = ({article}) => {
             </TwitterShareButton>
             <WhatsappShareButton
               url={currentUrl}
-              title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
+              title={
+                article?.title && HTMLDecoderEncoder.decode(article?.title)
+              }
             >
               <div className="share__icon">
                 <img
@@ -221,7 +252,9 @@ const ArticlePage = ({article}) => {
             </WhatsappShareButton>
             <TelegramShareButton
               url={currentUrl}
-              title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
+              title={
+                article?.title && HTMLDecoderEncoder.decode(article?.title)
+              }
             >
               <div className="share__icon">
                 <img
@@ -230,45 +263,48 @@ const ArticlePage = ({article}) => {
                 />
               </div>
             </TelegramShareButton>
-                <img
-                  src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/copy-link.png`}
-                  alt="fb__icon" onClick={handleClick}
-                />
+            <img
+              src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/copy-link.png`}
+              alt="fb__icon"
+              onClick={handleClick}
+            />
           </div>
           <hr />
         </div>
       ) : (
-        <div className="loading__section">
-          <ThreeDots
-            height="80"
-            width="80"
-            radius="9"
-            color="#151515"
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{}}
-            wrapperClassName=""
-            visible={true}
-          />
-        </div>
-      //   <div className="container">
-    
-      //   <h2><Skeleton /></h2>
-      //   <p>
-      //   <Skeleton />
-      //   </p>
-      //   <div className="article__image">
-      //   <Skeleton height={500} />
-      //   </div>
-      //   <div className="article__content">
-      //   <p><Skeleton count={10} /></p>
-         
+        // <div className="loading__section">
+        //   <ThreeDots
+        //     height="80"
+        //     width="80"
+        //     radius="9"
+        //     color="#151515"
+        //     ariaLabel="three-dots-loading"
+        //     wrapperStyle={{}}
+        //     wrapperClassName=""
+        //     visible={true}
+        //   />
+        // </div>
 
-      //     <p>By Admin</p>
-      //   </div>
-   
-       
-      //   <hr />
-      // </div>
+        <div className="container">
+          <h2>
+            <Skeleton />
+          </h2>
+          <p>
+            <Skeleton />
+          </p>
+          <div className="article__image">
+            <Skeleton height={500} />
+          </div>
+          <div className="article__content">
+            <p>
+              <Skeleton count={10} />
+            </p>
+
+            <p>By Admin</p>
+          </div>
+
+          <hr />
+        </div>
       )}
     </div>
   );
@@ -303,28 +339,28 @@ const ArticlePage = ({article}) => {
 //     };
 //   }
 // }
-export async function getServerSideProps({ params }) {
-  nprogress.start();
-  const agent = new https.Agent({
-    rejectUnauthorized: false,
-  });
-  try {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
-      httpsAgent: agent,
-    });
-    const data = await res.data.data[0];
-    nprogress.done();
-    return {
-      props: {
-        article: data,
-      },
-    };
-  } catch (err) {
-    return {
-      notFound: true,
-    };
-  }
-}
+// export async function getServerSideProps({ params }) {
+//   nprogress.start();
+//   const agent = new https.Agent({
+//     rejectUnauthorized: false,
+//   });
+//   try {
+//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
+//       httpsAgent: agent,
+//     });
+//     const data = await res.data.data[0];
+//     nprogress.done();
+//     return {
+//       props: {
+//         article: data,
+//       },
+//     };
+//   } catch (err) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+// }
 
 
 

@@ -3,6 +3,7 @@
     position: fixed;
     left: 0;
     bottom: 0;
+    z-index: 1;
     /* height: 10vh; */
     padding: 5px 0;
     background: white;

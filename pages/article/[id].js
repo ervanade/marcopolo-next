@@ -68,9 +68,7 @@ const ArticlePage = () => {
 
   return (
     <>
-     <Head
-            
-          >
+     <Head >
             <title>{`Adventurer & Discoverer - Article - ${
               article?.title && HTMLDecoderEncoder.decode(article?.title)
             }`}</title>

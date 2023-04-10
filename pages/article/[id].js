@@ -346,10 +346,10 @@ export async function getServerSideProps({ params }) {
     rejectUnauthorized: false,
   });
   try {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/`, {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
       httpsAgent: agent,
     });
-    const data = await res.data.data.find(article => article.id = params.id);
+    const data = await res.data.data[0]
         
     nprogress.done();
     return {

@@ -67,12 +67,8 @@ const ArticlePage = ({articles}) => {
   }, [id]);
 
   return (
-    <div className="article-page">
-      {/* <div className='overlay__background'>
-    </div> */}
-      {article ? (
-        <div className="container">
-          <Head
+    <>
+      <Head
             defer={false}
             title={articles?.title && HTMLDecoderEncoder.decode(articles?.title)}
             defaultTitle={
@@ -171,6 +167,12 @@ const ArticlePage = ({articles}) => {
               content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${articles?.images[0]?.image_default}`}
             />
           </Head>
+    <div className="article-page">
+      {/* <div className='overlay__background'>
+    </div> */}
+      {article ? (
+        <div className="container">
+        
           <h1>{article?.title && HTMLDecoderEncoder.decode(article?.title)}</h1>
           <p>
             {article?.publish_at &&
@@ -307,6 +309,7 @@ const ArticlePage = ({articles}) => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

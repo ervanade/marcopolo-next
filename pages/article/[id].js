@@ -69,42 +69,7 @@ const ArticlePage = () => {
   return (
     <>
      <Head
-            defer={false}
-            title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
-            defaultTitle={
-              article?.title && HTMLDecoderEncoder.decode(article?.title)
-            }
-            titleTemplate={`%s`}
-            meta={[
-              {
-                name: "description",
-                content:
-                  article?.meta_description &&
-                  HTMLDecoderEncoder.decode(article?.meta_description),
-              },
-              {
-                name: "keywords",
-                content:
-                  article?.meta_keywords &&
-                  HTMLDecoderEncoder.decode(article?.meta_keywords),
-              },
-              {
-                name: "og:description",
-                content:
-                  article?.meta_description &&
-                  HTMLDecoderEncoder.decode(article?.meta_description),
-              },
-              {
-                name: "og:image",
-                content: `${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`,
-              },
-            ]}
-            links={[
-              {
-                rel: "article",
-                href: currentUrl,
-              },
-            ]}
+            
           >
             <title>{`Adventurer & Discoverer - Article - ${
               article?.title && HTMLDecoderEncoder.decode(article?.title)

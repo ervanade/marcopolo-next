@@ -171,7 +171,7 @@ const ArticlePage = () => {
               content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
             />
           </Head>
-          <h2>{article?.title && HTMLDecoderEncoder.decode(article?.title)}</h2>
+          <h1>{article?.title && HTMLDecoderEncoder.decode(article?.title)}</h1>
           <p>
             {article?.publish_at &&
               format(parseISO(article?.publish_at), "yyyy MMM dd")}{" "}
@@ -186,7 +186,7 @@ const ArticlePage = () => {
           <div className="article__image">
             <img
               src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
-              alt={`gambar-${
+              alt={`gambar-Adventurer and discoverer-${
                 article?.title && HTMLDecoderEncoder.decode(article?.title)
               }`}
             />

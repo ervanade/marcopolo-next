@@ -24,7 +24,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
-const ArticlePage = () => {
+const ArticlePage = ({articles}) => {
+  
     const router = useRouter()
     if (router.isFallback) {
       return  <div className="loading__section">
@@ -74,33 +75,33 @@ const ArticlePage = () => {
         <div className="container">
           <Head
             defer={false}
-            title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
+            title={articles?.title && HTMLDecoderEncoder.decode(articles?.title)}
             defaultTitle={
-              article?.title && HTMLDecoderEncoder.decode(article?.title)
+              articles?.title && HTMLDecoderEncoder.decode(articles?.title)
             }
             titleTemplate={`%s`}
             meta={[
               {
                 name: "description",
                 content:
-                  article?.meta_description &&
-                  HTMLDecoderEncoder.decode(article?.meta_description),
+                  articles?.meta_description &&
+                  HTMLDecoderEncoder.decode(articles?.meta_description),
               },
               {
                 name: "keywords",
                 content:
-                  article?.meta_keywords &&
-                  HTMLDecoderEncoder.decode(article?.meta_keywords),
+                  articles?.meta_keywords &&
+                  HTMLDecoderEncoder.decode(articles?.meta_keywords),
               },
               {
                 name: "og:description",
                 content:
-                  article?.meta_description &&
-                  HTMLDecoderEncoder.decode(article?.meta_description),
+                  articles?.meta_description &&
+                  HTMLDecoderEncoder.decode(articles?.meta_description),
               },
               {
                 name: "og:image",
-                content: `${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`,
+                content: `${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${articles?.images[0]?.image_default}`,
               },
             ]}
             links={[
@@ -111,20 +112,20 @@ const ArticlePage = () => {
             ]}
           >
             <title>{`Adventurer & Discoverer - Article - ${
-              article?.title && HTMLDecoderEncoder.decode(article?.title)
+              articles?.title && HTMLDecoderEncoder.decode(articles?.title)
             }`}</title>
             <meta
               name="description"
               content={
-                article?.meta_description &&
-                HTMLDecoderEncoder.decode(article?.meta_description)
+                articles?.meta_description &&
+                HTMLDecoderEncoder.decode(articles?.meta_description)
               }
             />
             <meta
               name="keywords"
               content={`${
-                article?.meta_keywords &&
-                HTMLDecoderEncoder.decode(article?.meta_keywords)
+                articles?.meta_keywords &&
+                HTMLDecoderEncoder.decode(articles?.meta_keywords)
               }`}
             />
             <meta property="og:url" content={currentUrl} />
@@ -140,19 +141,19 @@ const ArticlePage = () => {
             <meta
               property="og:title"
               content={
-                article?.title && HTMLDecoderEncoder.decode(article?.title)
+                articles?.title && HTMLDecoderEncoder.decode(articles?.title)
               }
             />
             <meta
               property="og:description"
               content={
-                article?.meta_description &&
-                HTMLDecoderEncoder.decode(article?.meta_description)
+                articles?.meta_description &&
+                HTMLDecoderEncoder.decode(articles?.meta_description)
               }
             />
             <meta
               property="og:image"
-              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
+              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${articles?.images[0]?.image_default}`}
             />
 
             <meta name="twitter:card" content="summary_large_image" />
@@ -162,13 +163,13 @@ const ArticlePage = () => {
             <meta
               name="twitter:description"
               content={
-                article?.meta_description &&
-                HTMLDecoderEncoder.decode(article?.meta_description)
+                articles?.meta_description &&
+                HTMLDecoderEncoder.decode(articles?.meta_description)
               }
             />
             <meta
               name="twitter:image"
-              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
+              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${articles?.images[0]?.image_default}`}
             />
           </Head>
           <h1>{article?.title && HTMLDecoderEncoder.decode(article?.title)}</h1>
@@ -339,28 +340,29 @@ const ArticlePage = () => {
 //     };
 //   }
 // }
-// export async function getServerSideProps({ params }) {
-//   nprogress.start();
-//   const agent = new https.Agent({
-//     rejectUnauthorized: false,
-//   });
-//   try {
-//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
-//       httpsAgent: agent,
-//     });
-//     const data = await res.data.data[0];
-//     nprogress.done();
-//     return {
-//       props: {
-//         article: data,
-//       },
-//     };
-//   } catch (err) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-// }
+export async function getServerSideProps({ params }) {
+  nprogress.start();
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+  });
+  try {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/`, {
+      httpsAgent: agent,
+    });
+    const data = await res.data.data.find(article => article.id = params.id);
+        
+    nprogress.done();
+    return {
+      props: {
+        articles: data,
+      },
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
+}
 
 
 

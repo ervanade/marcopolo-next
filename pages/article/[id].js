@@ -24,8 +24,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
-const ArticlePage = ({articles}) => {
-  
+const ArticlePage = ({article}) => {
     const router = useRouter()
     if (router.isFallback) {
       return  <div className="loading__section">
@@ -43,29 +42,29 @@ const ArticlePage = ({articles}) => {
     }
 // console.log(article);
   const id = (router.query.id)?.split('-')[0];
-  const [article, setArticle] = useState(null);
+  // const [article, setArticle] = useState(null);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  const fetchApiArticle = async () => {
-    try {
-      // eslint-disable-next-line
-      const responseUser = await axios({
-        method: "get",
-        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
-      }).then(function (response) {
-        setArticle(response.data.data[0]);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchApiArticle = async () => {
+  //   try {
+  //     // eslint-disable-next-line
+  //     const responseUser = await axios({
+  //       method: "get",
+  //       url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
+  //     }).then(function (response) {
+  //       setArticle(response.data.data[0]);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
     const handleClick = () => {
       navigator.clipboard.writeText(currentUrl);
     };
 
-  useEffect(() => {
-    fetchApiArticle();
-  }, [id]);
+  // useEffect(() => {
+  //   fetchApiArticle();
+  // }, [id]);
 
   return (
     <div className="article-page">
@@ -75,33 +74,33 @@ const ArticlePage = ({articles}) => {
         <div className="container">
           <Head
             defer={false}
-            title={articles?.title && HTMLDecoderEncoder.decode(articles?.title)}
+            title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
             defaultTitle={
-              articles?.title && HTMLDecoderEncoder.decode(articles?.title)
+              article?.title && HTMLDecoderEncoder.decode(article?.title)
             }
             titleTemplate={`%s`}
             meta={[
               {
                 name: "description",
                 content:
-                  articles?.meta_description &&
-                  HTMLDecoderEncoder.decode(articles?.meta_description),
+                  article?.meta_description &&
+                  HTMLDecoderEncoder.decode(article?.meta_description),
               },
               {
                 name: "keywords",
                 content:
-                  articles?.meta_keywords &&
-                  HTMLDecoderEncoder.decode(articles?.meta_keywords),
+                  article?.meta_keywords &&
+                  HTMLDecoderEncoder.decode(article?.meta_keywords),
               },
               {
                 name: "og:description",
                 content:
-                  articles?.meta_description &&
-                  HTMLDecoderEncoder.decode(articles?.meta_description),
+                  article?.meta_description &&
+                  HTMLDecoderEncoder.decode(article?.meta_description),
               },
               {
                 name: "og:image",
-                content: `${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${articles?.images[0]?.image_default}`,
+                content: `${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`,
               },
             ]}
             links={[
@@ -112,20 +111,20 @@ const ArticlePage = ({articles}) => {
             ]}
           >
             <title>{`Adventurer & Discoverer - Article - ${
-              articles?.title && HTMLDecoderEncoder.decode(articles?.title)
+              article?.title && HTMLDecoderEncoder.decode(article?.title)
             }`}</title>
             <meta
               name="description"
               content={
-                articles?.meta_description &&
-                HTMLDecoderEncoder.decode(articles?.meta_description)
+                article?.meta_description &&
+                HTMLDecoderEncoder.decode(article?.meta_description)
               }
             />
             <meta
               name="keywords"
               content={`${
-                articles?.meta_keywords &&
-                HTMLDecoderEncoder.decode(articles?.meta_keywords)
+                article?.meta_keywords &&
+                HTMLDecoderEncoder.decode(article?.meta_keywords)
               }`}
             />
             <meta property="og:url" content={currentUrl} />
@@ -141,19 +140,19 @@ const ArticlePage = ({articles}) => {
             <meta
               property="og:title"
               content={
-                articles?.title && HTMLDecoderEncoder.decode(articles?.title)
+                article?.title && HTMLDecoderEncoder.decode(article?.title)
               }
             />
             <meta
               property="og:description"
               content={
-                articles?.meta_description &&
-                HTMLDecoderEncoder.decode(articles?.meta_description)
+                article?.meta_description &&
+                HTMLDecoderEncoder.decode(article?.meta_description)
               }
             />
             <meta
               property="og:image"
-              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${articles?.images[0]?.image_default}`}
+              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
             />
 
             <meta name="twitter:card" content="summary_large_image" />
@@ -163,13 +162,13 @@ const ArticlePage = ({articles}) => {
             <meta
               name="twitter:description"
               content={
-                articles?.meta_description &&
-                HTMLDecoderEncoder.decode(articles?.meta_description)
+                article?.meta_description &&
+                HTMLDecoderEncoder.decode(article?.meta_description)
               }
             />
             <meta
               name="twitter:image"
-              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${articles?.images[0]?.image_default}`}
+              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
             />
           </Head>
           <h1>{article?.title && HTMLDecoderEncoder.decode(article?.title)}</h1>
@@ -349,12 +348,11 @@ export async function getServerSideProps({ params }) {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
       httpsAgent: agent,
     });
-    const data = await res.data.data[0]
-        
+    const data = await res.data.data[0];
     nprogress.done();
     return {
       props: {
-        articles: data,
+        article: data,
       },
     };
   } catch (err) {

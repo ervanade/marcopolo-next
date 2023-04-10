@@ -310,43 +310,20 @@ const ArticlePage = ({article}) => {
   );
 };
 
-// export async function getStaticPaths() {
-//   return {
-//     paths: [],
-//     fallback: true,
-//   };
-// }
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
 
-// export async function getStaticProps({ params }) {
-//   nprogress.start();
-//   try {
-//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/article/${params.id}`, { 
-//       httpsAgent: new https.Agent({  
-//         rejectUnauthorized: false
-//       })
-//     });
-//     const data = await res.data.data[0];
-//     nprogress.done();
-//     return {
-//       props: {
-//         article: data,
-//       },
-//       revalidate: 60 * 3,
-//     };
-//   } catch (err) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-// }
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   nprogress.start();
-  const agent = new https.Agent({
-    rejectUnauthorized: false,
-  });
   try {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
-      httpsAgent: agent,
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/article/${params.id}`, { 
+      httpsAgent: new https.Agent({  
+        rejectUnauthorized: false
+      })
     });
     const data = await res.data.data[0];
     nprogress.done();
@@ -354,6 +331,7 @@ export async function getServerSideProps({ params }) {
       props: {
         article: data,
       },
+      revalidate: 60 * 3,
     };
   } catch (err) {
     return {
@@ -361,6 +339,28 @@ export async function getServerSideProps({ params }) {
     };
   }
 }
+// export async function getServerSideProps({ params }) {
+//   nprogress.start();
+//   const agent = new https.Agent({
+//     rejectUnauthorized: false,
+//   });
+//   try {
+//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
+//       httpsAgent: agent,
+//     });
+//     const data = await res.data.data[0];
+//     nprogress.done();
+//     return {
+//       props: {
+//         article: data,
+//       },
+//     };
+//   } catch (err) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+// }
 
 
 

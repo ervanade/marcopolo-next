@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from 'next/router'
 import Head from 'next/head';
 import nprogress from '../../lib/nprogress';
-import { NextSeo } from "next-seo";
+
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import { format, parseISO } from "date-fns";
@@ -67,39 +67,6 @@ const ArticlePage = () => {
   }, [id]);
 
   return (
-    <>
-    {article && (
-        <NextSeo
-          title={article?.title && HTMLDecoderEncoder.decode(article?.title)}
-          description={
-            article?.meta_description &&
-            HTMLDecoderEncoder.decode(article?.meta_description)
-          }
-          canonical={currentUrl}
-          openGraph={{
-            url: currentUrl,
-            title:
-              article?.title && HTMLDecoderEncoder.decode(article?.title),
-            description:
-              article?.meta_description &&
-              HTMLDecoderEncoder.decode(article?.meta_description),
-            images: [
-              {
-                url: `${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`,
-                width: 650,
-                height: 366,
-                alt: "Article Image",
-              },
-            ],
-            type: "article",
-          }}
-          twitter={{
-            cardType: "summary_large_image",
-            site: "@Adventurer and Discover",
-            handle: "@Adventurer and Discoverer",
-          }}
-        />
-      )}
     <div className="article-page">
       {/* <div className='overlay__background'>
     </div> */}
@@ -340,7 +307,6 @@ const ArticlePage = () => {
         </div>
       )}
     </div>
-    </>
   );
 };
 

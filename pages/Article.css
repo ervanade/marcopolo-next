@@ -92,11 +92,11 @@
      cursor: pointer;
  }
  .card__article h1 {
-     font-size: 24px;
+     font-size: 22px;
      color: black;
      font-family: "Urbanist";
      font-weight: 700;
-     line-height: 32px;
+     line-height: 28px;
  }
  
  .card__article p {
@@ -220,10 +220,14 @@
          font-size: 16px !important;
          line-height: 18px !important;
      }
+     .hero .card__article p {
+         font-size: 14px !important;
+         line-height: 14px !important;
+     }
      .article .card__description {
          height: 210px;
      }
      .article .card__article {
-         height: 400px;
+         height: 420px;
      }
  }

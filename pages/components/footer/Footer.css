@@ -56,7 +56,7 @@
       
 }
 @media screen and (max-width: 500px) {
-   .section__footer h1 {    
+    .section__footer .wrapper__footer p {    
     font-size: 10px!important;    
    }
    .section__footer .logo img {

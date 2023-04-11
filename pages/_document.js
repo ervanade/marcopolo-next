@@ -2,10 +2,12 @@ import { Html, Head, Main, NextScript } from 'next/document'
 import Script from 'next/script'
 
 export default function Document() {
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
   return (
     <Html lang="en">
       <Head>
       <link rel="icon" href="/marcopolo__favicon.png" />
+      <link rel='canonical' href={currentUrl} />
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-X1DK4JPXR0" strategy="afterInteractive" />
       {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1DK4JPXR0"></script> */}
       <Script dangerouslySetInnerHTML={{

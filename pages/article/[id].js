@@ -24,8 +24,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
-const ArticlePage = ({articles}) => {
-  console.log(articles)
+const ArticlePage = () => {
     const router = useRouter()
     if (router.isFallback) {
       return  <div className="loading__section">
@@ -307,28 +306,28 @@ const ArticlePage = ({articles}) => {
 //     };
 //   }
 // }
-export async function getServerSideProps({ params }) {
-  nprogress.start();
-  const agent = new https.Agent({
-    rejectUnauthorized: false,
-  });
-  try {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article`, {
-      httpsAgent: agent,
-    });
-    const data = await res.data.data;
-    nprogress.done();
-    return {
-      props: {
-        articles: data,
-      },
-    };
-  } catch (err) {
-    return {
-      notFound: true,
-    };
-  }
-}
+// export async function getServerSideProps({ params }) {
+//   nprogress.start();
+//   const agent = new https.Agent({
+//     rejectUnauthorized: false,
+//   });
+//   try {
+//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
+//       httpsAgent: agent,
+//     });
+//     const data = await res.data.data[0];
+//     nprogress.done();
+//     return {
+//       props: {
+//         article: data,
+//       },
+//     };
+//   } catch (err) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+// }
 
 
 

@@ -5,9 +5,10 @@ import  Link from 'next/link';
 import { MdTravelExplore } from 'react-icons/md';
 // import { Article as article } from '../../data';
 import axios from 'axios';
+import useSWR from 'swr'
 
 
-import { BsArrowLeft, BsArrowRight, BsChevronBarLeft, BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
@@ -17,7 +18,7 @@ const Hero = () => {
     typeof window !== 'undefined' ? window.innerWidth : undefined,typeof window !== 'undefined' ? window.innerHeight : undefined ,
   ]);
   const [showSlide, setShowSlide] = useState([3])
-  const [article, setArticle] = useState(null)
+  // const [article, setArticle] = useState(null)
   const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
     <button
       {...props}
@@ -73,28 +74,45 @@ const Hero = () => {
       
     };
 
-  const fetchApiArticle = async () => {
-    try {
-      // eslint-disable-next-line
-      const responseUser = await axios({
-        method: 'get',
-        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article`,    
-      })
-      .then(function (response) {
-          // handle success
+//   const fetchApiArticle = async () => {
+//     try {
+//       // eslint-disable-next-line
+//       const responseUser = await axios({
+//         method: 'get',
+//         url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article`,    
+//       })
+//       .then(function (response) {
+//           // handle success
        
-          setArticle(response.data.data)
+//           setArticle(response.data.data)
          
-          // console.log(responseUser)
-        })
+//           // console.log(responseUser)
+//         })
     
-    } catch (error) {
-      console.log(error)
-    }
-}
-useEffect(() => {
-  fetchApiArticle()
-}, [])
+//     } catch (error) {
+//       console.log(error)
+//     }
+// }
+// useEffect(() => {
+//   fetchApiArticle()
+// }, [])
+const fetchApiArticle = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const swrConfig = {
+  fetcher: fetchApiArticle,
+  revalidateOnFocus: false, // menonaktifkan refresh otomatis saat aplikasi di-fokuskan
+  dedupingInterval: 5000, // mencegah pengambilan data ganda dalam interval 5 detik
+};
+const { data: article, error } = useSWR(
+  `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/`,
+  swrConfig
+);
     useEffect(() => {
       const handleWindowResize = () => {
         setWindowSize([window.innerWidth, window.innerHeight]);

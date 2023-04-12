@@ -11,6 +11,7 @@ import './components/hero/Hero.css'
 import './article/ArticlePage.css'
 import './components/modal/Modal.css'
 import 'nprogress/nprogress.css';
+import NextNProgress from 'nextjs-progressbar';
 import { useEffect } from 'react';
 
 
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }) {
   }, []);
   return (
   <Layout>
+    <NextNProgress />
   <Component {...pageProps} />
   </Layout>
   )

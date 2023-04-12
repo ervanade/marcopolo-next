@@ -7,6 +7,8 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { ThreeDots } from 'react-loader-spinner'
 import axios from 'axios';
 import Head from 'next/head';
+import useSWR, {SWRConfig} from 'swr'
+
 // import { Article as article} from '../data';
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
@@ -15,35 +17,52 @@ const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 
 const Article = () => {
-  const [article, setArticle] = useState(null)
+  // const [article, setArticle] = useState(null)
   const [perPage, setPerPage] = useState(6);
 
   const handleLoadMore = () => {
     setPerPage(perPage + 6);
   };
 
-  const fetchApiArticle = async () => {
-    try {
-      // eslint-disable-next-line
-      const responseUser = await axios({
-        method: 'get',
-        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article`,    
-      })
-      .then(function (response) {
-          // handle success
+//   const fetchApiArticle = async () => {
+//     try {
+//       // eslint-disable-next-line
+//       const responseUser = await axios({
+//         method: 'get',
+//         url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article`,    
+//       })
+//       .then(function (response) {
+//           // handle success
        
-          setArticle(response.data.data)
+//           setArticle(response.data.data)
          
-          // console.log(responseUser)
-        })
+//           // console.log(responseUser)
+//         })
     
-    } catch (error) {
-      console.log(error)
-    }
-}
-useEffect(() => {
-  fetchApiArticle()
-}, [])
+//     } catch (error) {
+//       console.log(error)
+//     }
+// }
+// useEffect(() => {
+//   fetchApiArticle()
+// }, [])
+const fetchApiArticle = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const swrConfig = {
+  fetcher: fetchApiArticle,
+  revalidateOnFocus: false, // menonaktifkan refresh otomatis saat aplikasi di-fokuskan
+  dedupingInterval: 5000, // mencegah pengambilan data ganda dalam interval 5 detik
+};
+const { data: article, error } = useSWR(
+  `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/`,
+  swrConfig
+);
   return (
     <div className="article" style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/background-article-5.jpg")` }}>
       <Head>

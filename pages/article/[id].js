@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from 'next/router'
 import Head from 'next/head';
 import nprogress from '../../lib/nprogress';
-
+import useSWR, {SWRConfig} from 'swr'
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import { format, parseISO } from "date-fns";
@@ -42,29 +42,50 @@ const ArticlePage = () => {
     }
 // console.log(article);
   const id = (router.query.id)?.split('-')[0];
-  const [article, setArticle] = useState(null);
+  // const [article, setArticle] = useState(null);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  const fetchApiArticle = async () => {
+  // const fetchApiArticle = async () => {
+  //   try {
+  //     // eslint-disable-next-line
+  //     const responseUser = await axios({
+  //       method: "get",
+  //       url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
+  //     }).then(function (response) {
+  //       setArticle(response.data.data[0]);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchApiArticle();
+  // }, [id]);
+
+  const fetchApiArticle = async (url) => {
     try {
-      // eslint-disable-next-line
-      const responseUser = await axios({
-        method: "get",
-        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
-      }).then(function (response) {
-        setArticle(response.data.data[0]);
-      });
+      const response = await axios.get(url);
+      return response.data.data[0];
     } catch (error) {
       console.log(error);
     }
   };
-    const handleClick = () => {
-      navigator.clipboard.writeText(currentUrl);
-    };
+  const swrConfig = {
+    fetcher: fetchApiArticle,
+    revalidateOnFocus: false, // menonaktifkan refresh otomatis saat aplikasi di-fokuskan
+    dedupingInterval: 10000, // mencegah pengambilan data ganda dalam interval 5 detik
+  };
+  const { data: article, error } = useSWR(
+    `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/${id}`,
+    swrConfig
+  );
 
-  useEffect(() => {
-    fetchApiArticle();
-  }, [id]);
+  const handleClick = () => {
+    navigator.clipboard.writeText(currentUrl);
+  };
+
+  if (error) return <div>Failed to load article</div>;
 
   return (
     <>

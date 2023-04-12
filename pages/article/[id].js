@@ -24,7 +24,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
-const ArticlePage = () => {
+const ArticlePage = ({articles}) => {
+  // console.log(articles);
     const router = useRouter()
     if (router.isFallback) {
       return  <div className="loading__section">
@@ -89,68 +90,68 @@ const ArticlePage = () => {
 
   return (
     <>
-     <Head >
-            <title>{`Adventurer & Discoverer - Article - ${
-              article?.title && HTMLDecoderEncoder.decode(article?.title)
-            }`}</title>
-            <meta
-              name="description"
-              content={
-                article?.meta_description &&
-                HTMLDecoderEncoder.decode(article?.meta_description)
-              }
-            />
-            <meta
-              name="keywords"
-              content={`${
-                article?.meta_keywords &&
-                HTMLDecoderEncoder.decode(article?.meta_keywords)
-              }`}
-            />
-            <meta property="og:url" content={currentUrl} />
-            <meta content={currentUrl} itemprop="url" />
+     <Head>
+        <title>{`Adventurer & Discoverer - Article - ${
+          articles?.title && HTMLDecoderEncoder.decode(articles?.title)
+        }`}</title>
+        <meta
+          name="description"
+          content={
+            articles?.meta_description &&
+            HTMLDecoderEncoder.decode(articles?.meta_description)
+          }
+        />
+        <meta
+          name="keywords"
+          content={`${
+            articles?.meta_keywords &&
+            HTMLDecoderEncoder.decode(articles?.meta_keywords)
+          }`}
+        />
+        <meta property="og:url" content={currentUrl} />
+        <meta content={currentUrl} itemprop="url" />
 
-            <meta property="og:type" content="article" />
-            <meta property="og:site_name" content="article" />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="article" />
 
-            <meta property="og:image:type" content="image/jpg" />
-            <meta property="og:image:width" content="650" />
-            <meta property="og:image:height" content="366" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="650" />
+        <meta property="og:image:height" content="366" />
 
-            <meta
-              property="og:title"
-              content={
-                article?.title && HTMLDecoderEncoder.decode(article?.title)
-              }
-            />
-            <meta
-              property="og:description"
-              content={
-                article?.meta_description &&
-                HTMLDecoderEncoder.decode(article?.meta_description)
-              }
-            />
-            <meta
-              property="og:image"
-              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
-            />
+        <meta
+          property="og:title"
+          content={
+            articles?.title && HTMLDecoderEncoder.decode(articles?.title)
+          }
+        />
+        <meta
+          property="og:description"
+          content={
+            articles?.meta_description &&
+            HTMLDecoderEncoder.decode(articles?.meta_description)
+          }
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${articles?.images[0]?.image_default}`}
+        />
 
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:site" content="Adventurer and Discover" />
-            <meta name="twitter:site:id" content="Adventurer and Discoverer" />
-            <meta name="twitter:creator" content="Adventurer and Discoverer" />
-            <meta
-              name="twitter:description"
-              content={
-                article?.meta_description &&
-                HTMLDecoderEncoder.decode(article?.meta_description)
-              }
-            />
-            <meta
-              name="twitter:image"
-              content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${article?.images[0]?.image_default}`}
-            />
-          </Head>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="Adventurer and Discover" />
+        <meta name="twitter:site:id" content="Adventurer and Discoverer" />
+        <meta name="twitter:creator" content="Adventurer and Discoverer" />
+        <meta
+          name="twitter:description"
+          content={
+            articles?.meta_description &&
+            HTMLDecoderEncoder.decode(articles?.meta_description)
+          }
+        />
+        <meta
+          name="twitter:image"
+          content={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${articles?.images[0]?.image_default}`}
+        />
+      </Head>
     
     <div className="article-page">
       {/* <div className='overlay__background'>
@@ -327,28 +328,30 @@ const ArticlePage = () => {
 //     };
 //   }
 // }
-// export async function getServerSideProps({ params }) {
-//   nprogress.start();
-//   const agent = new https.Agent({
-//     rejectUnauthorized: false,
-//   });
-//   try {
-//     const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/${params.id}`, {
-//       httpsAgent: agent,
-//     });
-//     const data = await res.data.data[0];
-//     nprogress.done();
-//     return {
-//       props: {
-//         article: data,
-//       },
-//     };
-//   } catch (err) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-// }
+export async function getServerSideProps({ params }) {
+  nprogress.start();
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+  });
+  try {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}/api/article/meta/${(params.id).split('-')[0]}`, {
+      httpsAgent: agent,
+    });
+    const data = await res.data.data[0];
+    // console.log(data);
+    nprogress.done();
+    return {
+      props: {
+        articles: data,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      notFound: true,
+    };
+  }
+}
 
 
 

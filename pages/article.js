@@ -92,7 +92,7 @@ const { data: article, error } = useSWR(
         return (
           <Col md='4' sm='6' key={index} className="mt-50" >
           <Link href={`/article/${item?.id}-${item?.slug}`}>
-          <CardArticle Image={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}` || ""} Title={item?.title && HTMLDecoderEncoder.decode((item?.title)) || ""} Excerpt={item?.excerpt && HTMLDecoderEncoder.decode((item?.excerpt)) || ""} Links={`/article/${item?.id}-${item?.slug}` || ""}></CardArticle>
+          <CardArticle Image={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}` || ""} Title={item?.title && HTMLDecoderEncoder.decode((item?.title)) || ""} Excerpt={item?.excerpt && HTMLDecoderEncoder.decode((item?.excerpt)) || ""} Links={`/article/${item?.id}-${item?.slug}` || "#"}></CardArticle>
           {/* <div className="card__article mt-50">
           <div className="card__article__image">
 

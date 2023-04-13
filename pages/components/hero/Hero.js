@@ -74,28 +74,6 @@ const Hero = () => {
       
     };
 
-//   const fetchApiArticle = async () => {
-//     try {
-//       // eslint-disable-next-line
-//       const responseUser = await axios({
-//         method: 'get',
-//         url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article`,    
-//       })
-//       .then(function (response) {
-//           // handle success
-       
-//           setArticle(response.data.data)
-         
-//           // console.log(responseUser)
-//         })
-    
-//     } catch (error) {
-//       console.log(error)
-//     }
-// }
-// useEffect(() => {
-//   fetchApiArticle()
-// }, [])
 const fetchApiArticle = async (url) => {
   try {
     const response = await axios.get(url);

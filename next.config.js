@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const fs = require('fs');
 const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin');
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
@@ -9,6 +10,24 @@ const nextConfig = {
 },
   compress: true,
   optimizeCss: true,
+  webpack: (config, { isServer }) => {
+    // Minify client-side JavaScript
+    if (!isServer) {
+      config.optimization.minimize = true;
+      config.optimization.minimizer = [new TerserPlugin({
+        terserOptions: {
+          format: {
+            comments: false,
+          },
+          compress: {
+            drop_console: true,
+          },
+        },
+        extractComments: false,
+      }),];
+    }
+    return config;
+  },
 
   
 }

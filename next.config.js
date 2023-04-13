@@ -20,7 +20,7 @@ const nextConfig = {
 }
 module.exports = {
   images: {
-      domains: ['adventureranddiscoverer.com'],
+      domains: ['api.adventureranddiscoverer.com', 'adventureranddiscoverer.com'],
   },
   mode: 'production',
   productionBrowserSourceMaps: false,

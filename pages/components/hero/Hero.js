@@ -136,7 +136,7 @@ const { data: article, error } = useSWR(
       { article ? article?.slice(0, 6).map((item, index ) => {
         return (
            <div key={index}>
-          <CardArticle Images={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}` || ""} Title={item?.title && HTMLDecoderEncoder.decode((item?.title)) || ""} Excerpt={item?.excerpt && HTMLDecoderEncoder.decode((item?.excerpt)) || ""} Links={`/article/${item?.id}-${item?.slug}` || "#"}></CardArticle>
+          <CardArticle Image={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}` || ""} Title={item?.title && HTMLDecoderEncoder.decode((item?.title)) || ""} Excerpt={item?.excerpt && HTMLDecoderEncoder.decode((item?.excerpt)) || ""} Links={`/article/${item?.id}-${item?.slug}` || "#"}></CardArticle>
             
            {/* <div className="card__article">
              <div className="card__article__image">

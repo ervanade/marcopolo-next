@@ -1,23 +1,16 @@
 import React from 'react'
 import  Link from 'next/link';
 import { MdTravelExplore } from 'react-icons/md';
-import Image from 'next/image';
 
-const CardArticle = ({Title, Images, Excerpt, Links}) => {
+const CardArticle = ({Title, Image, Excerpt, Links}) => {
     const handleDragStart = (event) => {
         event.preventDefault();
       };
-      const loaderProp =({ src }) => {
-        return src;
-    }
   return (
     <div className="card__article">
     <div className="card__article__image">
     <Link draggable="true" onDragStart={handleDragStart} href={Links || "#"}>
-    <div style={{ width: '100%', height: '100%', position: "relative" }}>
-
-    <Image src={Images} alt={`gambar-${Title}`} layout="fill" loader={loaderProp} objectFit="cover"/>
-        </div>
+    <img src={Image} alt={`gambar-${Title}`} />
    </Link>
     </div>
     <div className="card__description">

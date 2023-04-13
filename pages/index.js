@@ -1,11 +1,6 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import Navbar from './components/navbar/Navbar';
 import Hero from './components/hero/Hero';
 import Modal from './components/modal/Modal';
-
-import Footer from './components/footer/Footer';
-import { BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import { differenceInMonths } from 'date-fns';
 import styles from '@/styles/Home.module.css'
@@ -15,8 +10,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 export default function Home() {
-  const [openModalLogin, setOpenModalLogin] = useState(false)
-  const [openModalRegister, setOpenModalRegister] = useState(false)
   const [openModal, setOpenModal] = useState(false)
 
 

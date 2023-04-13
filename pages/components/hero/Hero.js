@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useRef, useState, lazy, Suspense} from 'react'
 // import './Hero.css'
 import Slider from "react-slick";
 import  Link from 'next/link';
@@ -9,7 +9,7 @@ import useSWR from 'swr'
 
 
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-
+const CardArticle = lazy(() => import('../cardArticle/CardArticle'))
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
@@ -157,12 +157,14 @@ const { data: article, error } = useSWR(
       <h1 className="text_cover">Setiap Hari <br/>Penuh <br/>Eksplorasi</h1>
       {/* <button>Read More</button> */}
       <div className="article-card">
+      <Suspense fallback={<div>Loading...</div>}>
       <Slider {...settingsCard}>
       { article ? article?.slice(0, 6).map((item, index ) => {
         return (
            <div key={index}>
+            <CardArticle Image={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}` || ""} Title={item?.title && HTMLDecoderEncoder.decode((item?.title)) || ""} Excerpt={item?.excerpt && HTMLDecoderEncoder.decode((item?.excerpt)) || ""} Links={`/article/${item?.id}-${item?.slug}` || ""}></CardArticle>
             
-           <div className="card__article">
+           {/* <div className="card__article">
              <div className="card__article__image">
              <Link draggable="true" onDragStart={handleDragStart} href={`/article/${item?.id}-${item?.slug}`}>
              <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt={`gambar-${item?.title && HTMLDecoderEncoder.decode((item?.title))}`} />
@@ -173,7 +175,7 @@ const { data: article, error } = useSWR(
               <p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p>
               <Link href={`/article/${item?.id}-${item?.slug}`}><button className='button__explore' name="button__explore">Explore<MdTravelExplore className="button__icon" size={20}/></button></Link>
               </div>
-            </div>
+            </div> */}
            </div>
         )
       })
@@ -181,6 +183,7 @@ const { data: article, error } = useSWR(
     }
         
         </Slider>
+        </Suspense>
         <div className="card__arrow">
           <div style={{
                 width:40,
@@ -212,36 +215,7 @@ const { data: article, error } = useSWR(
     </div>
     </div>
       </div>
-      {/* <div>
-      <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/home-1.png`} alt="hero" className='hero__image'/>
-    <div className="container">
-
-    <div className="hero__text">
-      <h1>Taste and <br /> Discover Your Choice</h1>
-      <button>Read More</button>
-      </div>
-    </div>
-      </div>
-      <div>
-      <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/home-2.png`} alt="hero" className='hero__image'/>
-    <div className="container">
-
-    <div className="hero__text">
-      <h1>Adventurer and Discoverer</h1>
-      <button>Read More</button>
-      </div>
-    </div>
-      </div> */}
-      
     </Slider>
-    {/* <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/home-0-flip.png`} alt="hero" className='hero__image'/>
-    <div className="container">
-
-    <div className="hero__text">
-      <h1>The Journey Has Begin, <br /> Find Your Taste</h1>
-      <button>Read More</button>
-      </div>
-    </div> */}
   </div>
   )
 }

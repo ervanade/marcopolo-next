@@ -3,14 +3,9 @@ import Hero from './components/hero/Hero';
 import Modal from './components/modal/Modal';
 import { useState, useEffect } from 'react'
 import { differenceInMonths } from 'date-fns';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 
 export default function Home() {
   const [openModal, setOpenModal] = useState(false)
-
 
   useEffect(() => {
     const yearBirth = localStorage.getItem('yearBirth')

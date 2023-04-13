@@ -137,19 +137,6 @@ const { data: article, error } = useSWR(
         return (
            <div key={index}>
           <CardArticle Image={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}` || ""} Title={item?.title && HTMLDecoderEncoder.decode((item?.title)) || ""} Excerpt={item?.excerpt && HTMLDecoderEncoder.decode((item?.excerpt)) || ""} Links={`/article/${item?.id}-${item?.slug}` || "#"}></CardArticle>
-            
-           {/* <div className="card__article">
-             <div className="card__article__image">
-             <Link draggable="true" onDragStart={handleDragStart} href={`/article/${item?.id}-${item?.slug}`}>
-             <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt={`gambar-${item?.title && HTMLDecoderEncoder.decode((item?.title))}`} />
-            </Link>
-             </div>
-             <div className="card__description">
-              <Link draggable="true" onDragStart={handleDragStart} href={`/article/${item?.id}-${item?.slug}`}><h1>{item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 7).join(" "))}..</h1></Link>
-              <p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p>
-              <Link href={`/article/${item?.id}-${item?.slug}`}><button className='button__explore' name="button__explore">Explore<MdTravelExplore className="button__icon" size={20}/></button></Link>
-              </div>
-            </div> */}
            </div>
         )
       })

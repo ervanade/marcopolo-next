@@ -9,9 +9,7 @@ const nextConfig = {
     domains: ['api.adventureranddiscoverer.com', 'adventureranddiscoverer.com'],
 },
   compress: true,
-  optimizeCss: true,
   webpack: (config, { isServer }) => {
-    // Minify client-side JavaScript
     if (!isServer) {
       config.optimization.minimize = true;
       config.optimization.minimizer = [new TerserPlugin({

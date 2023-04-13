@@ -5,15 +5,8 @@ const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'adventureranddiscoverer.com',
-        port: '',
-        pathname: '/assets',
-      },
-    ],
-  },
+    domains: ['api.adventureranddiscoverer.com', 'adventureranddiscoverer.com'],
+},
   compress: true,
 
   

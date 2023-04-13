@@ -8,6 +8,7 @@ const nextConfig = {
     domains: ['api.adventureranddiscoverer.com', 'adventureranddiscoverer.com'],
 },
   compress: true,
+  optimizeCss: true,
 
   
 }

@@ -3,7 +3,6 @@ import Hero from './components/hero/Hero';
 import Modal from './components/modal/Modal';
 import { useState, useEffect } from 'react'
 import { differenceInMonths } from 'date-fns';
-import styles from '@/styles/Home.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

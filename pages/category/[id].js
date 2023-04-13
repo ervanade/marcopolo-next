@@ -16,7 +16,7 @@ const Category = () => {
   const [article, setArticle] = useState(null)
   const router = useRouter()
 
-  const { id } = router.query
+  const id = (router.query.id)?.split('-')[0];
   const fetchApiArticle = async () => {
     try {
       // eslint-disable-next-line
@@ -38,7 +38,7 @@ const Category = () => {
 }
 useEffect(() => {
   fetchApiArticle()
-}, [])
+}, [id])
 // console.log(article);
   return (
     <div className="article" style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/background-article-5.jpg")` }}>

@@ -8,6 +8,7 @@ import { ThreeDots } from 'react-loader-spinner'
 import axios from 'axios';
 import Head from 'next/head';
 import useSWR, {SWRConfig} from 'swr'
+import CardArticle from './components/cardArticle/CardArticle';
 
 // import { Article as article} from '../data';
 
@@ -78,15 +79,16 @@ const { data: article, error } = useSWR(
     <Row className='card__wrapper gx-5'>
       { article ? article?.slice(0, perPage).map((item, index ) => {
         return (
-          <Col md='4' sm='6' key={index}>
+          <Col md='4' sm='6' key={index} className="mt-50" >
           <Link href={`/article/${item?.id}-${item?.slug}`}>
-          <div className="card__article mt-50">
+          <CardArticle Image={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}` || ""} Title={item?.title && HTMLDecoderEncoder.decode((item?.title)) || ""} Excerpt={item?.excerpt && HTMLDecoderEncoder.decode((item?.excerpt)) || ""} Links={`/article/${item?.id}-${item?.slug}` || ""}></CardArticle>
+          {/* <div className="card__article mt-50">
           <div className="card__article__image">
 
             <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt="article_image" />
           </div>
             <div className="card__description"><h1>{`${item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 8).join(" "))} ${item?.title.split(" ").length <= 9 ? '' : '...'}`}</h1><p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.excerpt).split(" ").slice(0, 7).join(" "))}...</p><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></div>
-           </div>
+           </div> */}
            </Link>
            </Col>
         )

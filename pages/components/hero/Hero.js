@@ -1,12 +1,13 @@
 import React, {useEffect, useRef, useState, lazy, Suspense} from 'react'
 // import './Hero.css'
 import Slider from "react-slick";
-import  Link from 'next/link';
-import { MdTravelExplore } from 'react-icons/md';
+// import  Link from 'next/link';
+// import { MdTravelExplore } from 'react-icons/md';
 // import { Article as article } from '../../data';
 import axios from 'axios';
 import useSWR from 'swr'
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 const CardArticle = lazy(() => import('../cardArticle/CardArticle'))
@@ -157,7 +158,9 @@ const { data: article, error } = useSWR(
       <h1 className="text_cover">Setiap Hari <br/>Penuh <br/>Eksplorasi</h1>
       {/* <button>Read More</button> */}
       <div className="article-card">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={ <div className="card__article">
+            <Skeleton height={420} />
+          </div>}>
       <Slider {...settingsCard}>
       { article ? article?.slice(0, 6).map((item, index ) => {
         return (

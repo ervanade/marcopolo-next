@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, lazy, Suspense} from 'react'
 // import './Article.css'
 import { Row, Col } from 'react-bootstrap'
 import Link from 'next/link';
@@ -8,8 +8,9 @@ import { ThreeDots } from 'react-loader-spinner'
 import axios from 'axios';
 import Head from 'next/head';
 import useSWR, {SWRConfig} from 'swr'
-import CardArticle from './components/cardArticle/CardArticle';
-
+const CardArticle = lazy(() => import('./components/cardArticle/CardArticle'))
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 // import { Article as article} from '../data';
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
@@ -75,7 +76,17 @@ const { data: article, error } = useSWR(
   <div className="container">
     <h1 className='title__page'>Article <MdOutlineExplore /></h1>
 
- 
+    <Suspense fallback={ <div className="card__article">
+            <Col md='4' sm='6' className="mt-50" >
+            <Skeleton height={420} />
+            </Col>
+            <Col md='4' sm='6' className="mt-50" >
+            <Skeleton height={420} />
+            </Col>
+            <Col md='4' sm='6' className="mt-50" >
+            <Skeleton height={420} />
+            </Col>
+          </div>}>
     <Row className='card__wrapper gx-5'>
       { article ? article?.slice(0, perPage).map((item, index ) => {
         return (
@@ -108,6 +119,7 @@ visible={true}
     }
         
     </Row>
+    </Suspense>
     { article && article.length > perPage ?
   <div className="button-load-more">
     <button onClick={handleLoadMore}>LOAD MORE</button>

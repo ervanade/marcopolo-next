@@ -158,8 +158,13 @@ const { data: article, error } = useSWR(
       <h1 className="text_cover">Setiap Hari <br/>Penuh <br/>Eksplorasi</h1>
       {/* <button>Read More</button> */}
       <div className="article-card">
-      <Suspense fallback={ <div className="card__article">
+      <Suspense fallback={ <div className='d-flex' style={{gap: "40px"}}>
+        <div className="card__article">
             <Skeleton height={420} />
+          </div>
+        {/* <div className="card__article">
+            <Skeleton height={420} />
+          </div> */}
           </div>}>
       <Slider {...settingsCard}>
       { article ? article?.slice(0, 6).map((item, index ) => {

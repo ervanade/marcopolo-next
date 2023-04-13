@@ -2,10 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Link from "next/link";
 import { MdOutlineExplore, MdTravelExplore} from "react-icons/md";
-import { BsArrowRightShort } from "react-icons/bs";
 import { ThreeDots } from 'react-loader-spinner'
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 

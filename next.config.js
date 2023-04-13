@@ -12,9 +12,6 @@ const nextConfig = {
   
 }
 module.exports = {
-  images: {
-      domains: ['api.adventureranddiscoverer.com', 'adventureranddiscoverer.com'],
-  },
   mode: 'production',
   productionBrowserSourceMaps: false,
 }

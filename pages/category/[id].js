@@ -19,6 +19,11 @@ const Category = ({article}) => {
   const router = useRouter()
 
   const id = (router.query.id)?.split('-')[0];
+  const [perPage, setPerPage] = useState(6);
+
+  const handleLoadMore = () => {
+    setPerPage(perPage + 6);
+  };
 //   const fetchApiArticle = async () => {
 //     try {
 //       // eslint-disable-next-line
@@ -57,7 +62,7 @@ const Category = ({article}) => {
   {/* <div className="article__wrapper"> */}
     {/* <h1>Article</h1> */}
     <Row className='card__wrapper gx-5'>
-      { article ? article?.map((item, index ) => {
+      { article ? article?.slice(0, perPage).map((item, index ) => {
         return (
           <Col md='4' sm='6' index={index}>
           <Link href={`/article/${item?.id}-${item?.slug}`}>
@@ -141,9 +146,12 @@ visible={true}
             <div className="card__description"><h1>Test</h1><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam autem mollitia unde.</p><button>Explore<MdTravelExplore className="button__icon" size={20}/></button></div>
             </div></Link></Col> */}
     </Row>
-    <div className="button-load-more">
-      <button>LOAD MORE</button>
-    </div>
+    { article && article.length > perPage ?
+  <div className="button-load-more">
+    <button onClick={handleLoadMore}>LOAD MORE</button>
+  </div>
+  : null
+}
     {/* </div> */}
     </div>
   </div>

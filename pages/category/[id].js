@@ -6,39 +6,41 @@ import { ThreeDots } from 'react-loader-spinner'
 import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import https from 'https';
+
 
 // import { Article as article} from '../data';
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 
-const Category = () => {
-  const [article, setArticle] = useState(null)
+const Category = ({article}) => {
+  // const [article, setArticle] = useState(null)
   const router = useRouter()
 
   const id = (router.query.id)?.split('-')[0];
-  const fetchApiArticle = async () => {
-    try {
-      // eslint-disable-next-line
-      const responseUser = await axios({
-        method: 'get',
-        url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/filter/${id}}`,    
-      })
-      .then(function (response) {
-          // handle success
+//   const fetchApiArticle = async () => {
+//     try {
+//       // eslint-disable-next-line
+//       const responseUser = await axios({
+//         method: 'get',
+//         url: `${process.env.NEXT_PUBLIC_APP_API_KEY}/article/filter/${id}}`,    
+//       })
+//       .then(function (response) {
+//           // handle success
        
-          setArticle(response.data.data)
+//           setArticle(response.data.data)
          
-          // console.log(responseUser)
-        })
+//           // console.log(responseUser)
+//         })
     
-    } catch (error) {
-      console.log(error)
-    }
-}
-useEffect(() => {
-  fetchApiArticle()
-}, [id])
+//     } catch (error) {
+//       console.log(error)
+//     }
+// }
+// useEffect(() => {
+//   fetchApiArticle()
+// }, [id])
 // console.log(article);
   return (
     <div className="article" style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/background-article-5.jpg")` }}>
@@ -146,6 +148,29 @@ visible={true}
     </div>
   </div>
   )
+}
+
+export async function getServerSideProps({ params }) {
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+  });
+  try {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_KEY}/article/filter/${(params.id).split('-')[0]}}`, {
+      httpsAgent: agent,
+    });
+    const data = await res.data.data;
+    // console.log(data);
+    return {
+      props: {
+        article: data,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export default Category

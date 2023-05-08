@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import { Row, Col } from 'react-bootstrap'
 import Head from 'next/head';
+import Link from 'next/link';
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 
@@ -84,33 +85,29 @@ useEffect(() => {
   <div className="container">
     <h1>Testimony</h1>
 
-
+    {testimony ? 
     <Slider {...settingsCardTesti}>
-    { testimony ? testimony?.map((item, index ) => {
+    { testimony?.map((item, index ) => {
         return (
           <div key={index}>
           <div className="card__testi mt-50">
           <div className="card__testi__image">
-
+          <a target="_blank" href={item?.subtitle} rel="noopener noreferrer">
           <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt="testimony_image" />
+          </a>
           </div>
-            <div className="card__description"><h1>{`${item?.title && HTMLDecoderEncoder.decode((item?.title).split(" ").slice(0, 8).join(" "))} ${item?.title.split(" ").length <= 9 ? '' : '...'}`}</h1><p>{item?.subtitle && HTMLDecoderEncoder.decode((item?.subtitle))}</p></div>
+          
+
+            <div className="card__description">
+            <a target="_blank" href={item?.subtitle} rel="noopener noreferrer">
+<h1>{item?.title && HTMLDecoderEncoder.decode((item?.title))}</h1></a>
+<p>{item?.excerpt && HTMLDecoderEncoder.decode((item?.excerpt))}</p></div>
+           
            </div>
           </div>
         )
       })
-    : <div className='loading__section'>
-    <ThreeDots 
-height="80" 
-width="80" 
-radius="9"
-color="#151515" 
-ariaLabel="three-dots-loading"
-wrapperStyle={{}}
-wrapperClassName=""
-visible={true}
-/>
-</div>
+ 
     }
           {/* <div>
           <div className="card__testi mt-50">
@@ -194,6 +191,19 @@ visible={true}
            </div>
           </div> */}
         </Slider>
+           : <div className='loading__section'>
+        <ThreeDots 
+    height="80" 
+    width="80" 
+    radius="9"
+    color="#151515" 
+    ariaLabel="three-dots-loading"
+    wrapperStyle={{}}
+    wrapperClassName=""
+    visible={true}
+    />
+    </div>
+        }
     
     </div>
   </div>

@@ -23,7 +23,8 @@
     justify-content: center !important;
     width: 95%;
     margin-bottom: 15px;
-    height: 320px;
+    height: 450px;
+    padding: 15px;
     /* margin: auto; */
     
 }
@@ -45,7 +46,7 @@
 }
 .card__testi .card__description {
     padding: 10px 20px;
-    height: 100px;
+    height: auto;
     overflow: hidden;
 }
 .card__testi:hover {
@@ -66,6 +67,7 @@
     font-family: "Urbanist";
     font-weight: 500;
     text-align: center;
+    color: black;
 }
 .card__testi__image {
     background:transparent;
@@ -103,4 +105,7 @@
     font-size: 16px;
     font-weight: 400;
     padding: 5px 10px;
+}
+.testi a{
+    text-decoration: none;
 }

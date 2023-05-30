@@ -5,9 +5,12 @@ const TerserPlugin = require('terser-webpack-plugin');
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
+  experimental: {
+    forceSwcTransforms: true,
+  },
   images: {
     domains: ['api.adventureranddiscoverer.com', 'adventureranddiscoverer.com'],
-},
+  },
   compress: true,
   webpack: (config, { isServer }) => {
     if (!isServer) {
@@ -27,7 +30,7 @@ const nextConfig = {
     return config;
   },
 
-  
+
 }
 module.exports = {
   mode: 'production',
@@ -51,7 +54,7 @@ module.exports = {
       ...dynamicRoutesMap,
     };
   },
-  
+
 };
 
 module.exports = nextConfig

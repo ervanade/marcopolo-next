@@ -120,7 +120,8 @@ const { data: article, error } = useSWR(
       <div>
       <div className='overlay__background'>
       </div>
-      <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/adventure-5.jpeg`} alt="hero" className='hero__image'/>
+      {/* <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/adventure-5.jpeg`} alt="hero" className='hero__image'/> */}
+      <img src={`/adventure-5.jpg`} alt="hero" className='hero__image'/>
     <div className="container">
     <div className="hero__card__article">
 

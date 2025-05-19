@@ -40,7 +40,8 @@ const { data: article, error } = useSWR(
   swrConfig
 );
   return (
-    <div className="article" style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/background-article-5.jpg")` }}>
+    // <div className="article" style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/background-article-5.jpg")` }}>
+    <div className="article" style={{ backgroundImage: `url("/adventure-5_b.jpg")` }}>
       <Head>
         <title>{`Adventurer and discoverer - Article`}</title>
         <meta name="description" content={`Temukan Beragam Tips dan Trik Artikel Setiap Harinya Penuh Eksplorasi Travel Petualang di Website Marcopolo`}/>

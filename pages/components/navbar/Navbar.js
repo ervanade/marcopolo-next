@@ -56,7 +56,8 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
       width={154}
       height={65}
     /> */}
-    <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/Marcopolo-Logo.png`} alt="logo" />
+    {/* <img src={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/assets/Marcopolo-Logo.png`} alt="logo" /> */}
+    <img src={`/marcopolo_black.png`} alt="logo" />
     </Link></div> 
             </div>
         <div className="header__right">

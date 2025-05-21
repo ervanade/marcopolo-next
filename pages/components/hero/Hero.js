@@ -127,8 +127,7 @@ const Hero = () => {
 
               <div className="hero__text">
                 {/* <h1>The Journey Has Begin, <br /> Find Your Taste</h1> */}
-                <h1 className="text_cover">Di Setiap Batas,  <br />Ada Kejutan Bebas
-                  <br /></h1>
+                <h1 className="text_cover">Setiap Hari <br/>Penuh <br/>Eksplorasi</h1>
                 {/* <button>Read More</button> */}
                 <div className="article-card">
                   <Suspense fallback={<div className="card__article">

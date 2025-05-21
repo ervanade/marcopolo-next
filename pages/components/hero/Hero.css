@@ -3,7 +3,7 @@
     height: 85vh;
     width: 100%;
     /* position: relative; */
-    object-position: 0% 80%;
+    object-position: 0% 0%;
     /* background-position: center; */
     background-size: cover;
     background-repeat: no-repeat;
@@ -54,10 +54,10 @@
 
 .hero .text_cover {
     font-family: 'Urbanist', sans-serif;
-    margin-left: -30px;
-    margin-top: 13vw;
+    /* margin-left: -30px;
+    margin-top: 13vw; */
     color: white;
-    font-size: 42px;
+    font-size: 60px;
     text-transform: uppercase;
     line-height: 72px;
     font-weight: 1000;
@@ -80,7 +80,7 @@
     position: absolute;
     top: -50%;
     left: 37%;
-    margin-top: 4vw;
+    /* margin-top: 4vw; */
 }
 
 .hero__text .card__description {

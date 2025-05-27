@@ -127,7 +127,7 @@ const Hero = () => {
 
               <div className="hero__text">
                 {/* <h1>The Journey Has Begin, <br /> Find Your Taste</h1> */}
-                <h1 className="text_cover">Setiap Hari <br />Penuh <br />Eksplorasi</h1>
+                <h1 className="text_cover">Setiap Hari <br />Penuh <br style={{ display: "none" }} />Eksplorasi</h1>
                 {/* <button>Read More</button> */}
                 <div className="article-card">
                   <Suspense fallback={<div className="card__article">

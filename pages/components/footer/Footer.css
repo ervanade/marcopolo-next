@@ -137,8 +137,94 @@ h4 {
         display: flex;
     }
 
-    .section__footer .wrapper__footer p {
+    .section__footer .perhatian_footer p {
         font-size: 9px !important;
+    }
+
+    .section__footer .logo img {
+        max-height: 40px;
+        margin-right: 8px;
+        /* Sesuaikan margin untuk mobile */
+    }
+
+    .lingkar_umur {
+        width: 26px;
+        /* Sesuaikan ukuran lingkaran untuk mobile */
+        height: 26px;
+        min-width: 20px;
+        margin-left: 8px;
+        min-height: 20px;
+    }
+
+    .lingkar_umur p {
+        font-size: 10px !important;
+        /* Sesuaikan font size untuk mobile */
+    }
+
+    .perhatian_footer {
+        margin: 0 5px;
+        /* Sesuaikan margin untuk mobile */
+    }
+}
+
+@media screen and (max-width: 500px) and (max-height: 780px) {
+    .wrapper__footer {
+
+        padding: 0 8px;
+    }
+
+    .section__footer {
+        height: 15vh;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .section__footer .perhatian_footer p {
+        font-size: 8px !important;
+    }
+
+    .section__footer .logo img {
+        max-height: 35px;
+        margin-right: 8px;
+        /* Sesuaikan margin untuk mobile */
+    }
+
+    .lingkar_umur {
+        width: 26px;
+        /* Sesuaikan ukuran lingkaran untuk mobile */
+        height: 26px;
+        min-width: 20px;
+        margin-left: 8px;
+        min-height: 20px;
+    }
+
+    .lingkar_umur p {
+        font-size: 10px !important;
+        /* Sesuaikan font size untuk mobile */
+    }
+
+    .perhatian_footer {
+        margin: 0 5px;
+        /* Sesuaikan margin untuk mobile */
+    }
+}
+
+@media screen and (max-width: 500px) and (max-height: 600px) {
+    .wrapper__footer {
+
+        padding: 0 8px;
+    }
+
+    .section__footer {
+        height: 25vh;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .section__footer .perhatian_footer p {
+        font-size: 8px !important;
     }
 
     .section__footer .logo img {
@@ -147,23 +233,17 @@ h4 {
         /* Sesuaikan margin untuk mobile */
     }
 
-    .section__footer .logo img {
-        max-height: 30px;
-        /* Sesuaikan margin untuk mobile */
-    }
-
-
     .lingkar_umur {
-        width: 20px;
+        width: 26px;
         /* Sesuaikan ukuran lingkaran untuk mobile */
-        height: 20px;
+        height: 26px;
         min-width: 20px;
         margin-left: 8px;
         min-height: 20px;
     }
 
     .lingkar_umur p {
-        font-size: 8px;
+        font-size: 10px !important;
         /* Sesuaikan font size untuk mobile */
     }
 

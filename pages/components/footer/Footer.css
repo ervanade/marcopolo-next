@@ -4,65 +4,171 @@
     left: 0;
     bottom: 0;
     z-index: 1;
-    /* height: 10vh; */
     padding: 5px 0;
     background: white;
     overflow: hidden;
     color: rgba(0, 0, 0, 0.8);
 }
+
 .wrapper__footer {
     display: flex;
     align-items: center;
+    /* Memastikan semua item sejajar di tengah secara vertikal */
     justify-content: space-between;
+    /* Ini akan mendorong item pertama ke kiri, item terakhir ke kanan, dan item di tengah akan di tengah. */
+    width: 100%;
+    /* Pastikan wrapper mengambil lebar penuh container */
+    max-width: 1200px;
+    /* Opsional: batasi lebar maksimal agar tidak terlalu lebar di layar besar */
+    margin: 0 auto;
+    /* Opsional: Pusatkan wrapper dalam container */
+    padding: 0 15px;
+    /* Opsional: Tambahkan padding horizontal agar tidak terlalu mepet ke sisi */
 }
-.section__footer h1, h4 {
+
+.section__footer h1,
+h4 {
     font-weight: 700;
     font-size: 32px;
 }
+
+.section__footer .logo {
+    /* flex: 1; Ini tidak perlu lagi flex:1 jika Anda ingin kontennya tetap di kiri tanpa memakan ruang berlebih */
+    /* margin-right: 20px; */
+    /* Memberi sedikit jarak dari elemen berikutnya */
+}
+
 .section__footer .logo img {
     max-height: 50px;
 }
+
+/* Perubahan pada lingkar_umur */
 .lingkar_umur {
     font-weight: 700;
+    /* Hapus flex: 1; di sini */
     border: 1px solid black;
     border-radius: 50%;
     padding: 5px;
+    font-size: 10px;
+    /* justify-content: end; dan align-items: end; tidak berlaku di sini karena ini bukan flex container */
+    /* Untuk memposisikan p di dalamnya, kita akan membuat lingkar_umur menjadi flex container */
+    display: flex;
+    /* Buat flex container */
+    justify-content: center;
+    /* Pusatkan horizontal konten di dalamnya */
+    align-items: center;
+    /* Pusatkan vertikal konten di dalamnya */
+    width: 28px;
+    /* Tetapkan lebar tetap untuk lingkaran */
+    height: 28px;
+    /* Tetapkan tinggi tetap untuk lingkaran */
+    min-width: 28px;
+    /* Pastikan tidak menyusut */
+    min-height: 28px;
+    /* Pastikan tidak menyusut */
+    box-sizing: border-box;
+    /* Pastikan padding dan border termasuk dalam width/height */
+    margin-left: auto;
+    /* Ini akan mendorongnya ke kanan jika ada sisa ruang setelah elemen lain */
 }
+
+.lingkar_umur p {
+    /* Hapus semua properti border, radius, padding, font-size, justify-content, align-items, max-width dari sini */
+    /* Mereka sudah diatur pada parent `.lingkar_umur` */
+    margin: 0;
+    /* Hapus margin default pada p */
+    line-height: 1;
+    /* Sesuaikan line-height agar teks '21+' berada di tengah vertikal */
+    font-size: 10px;
+    /* Pertahankan ukuran font di sini jika Anda ingin override ukuran dari parent */
+}
+
 .perhatian_footer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
+    flex-grow: 1;
+    /* Biarkan ini mengambil sisa ruang di tengah */
+    margin: 0 auto !important;
+    /* Tambahkan margin di kiri dan kanan untuk memisahkan dari logo dan lingkar_umur */
 }
+
 .perhatian_footer h1 {
     text-align: center;
 }
-.section__footer .wrapper__footer h1,.section__footer .wrapper__footer p {    
-    font-size: 14px!important;
+
+.section__footer .wrapper__footer h1,
+.section__footer .wrapper__footer p {
+    font-size: 12px !important;
     margin-bottom: 0px;
     font-weight: 700;
     line-height: 16.5px;
-   }
+}
+
 @media screen and (max-width: 768px) {
-   .section__footer h1 {    
-    font-size: 12px!important;    
-   }
-   .section__footer .logo img {
-    max-height: 30px;
-    margin-right: 20px;
+    .section__footer h1 {
+        font-size: 12px !important;
+    }
+
+    .section__footer .logo img {
+        max-height: 30px;
+        /* margin-right: 10px; */
+        /* Sesuaikan margin untuk mobile */
+    }
+
+    .perhatian_footer {
+        margin: 0 auto;
+        /* Sesuaikan margin untuk mobile */
+    }
 }
 
-      
-}
 @media screen and (max-width: 500px) {
-    .section__footer .wrapper__footer p {    
-    font-size: 10px!important;    
-   }
-   .section__footer .logo img {
-    max-height: 30px;
-    margin-right: 20px;
-}
+    .wrapper__footer {
 
-      
+        padding: 0 8px;
+    }
+
+    .section__footer {
+        height: 15vh;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .section__footer .wrapper__footer p {
+        font-size: 9px !important;
+    }
+
+    .section__footer .logo img {
+        max-height: 30px;
+        margin-right: 8px;
+        /* Sesuaikan margin untuk mobile */
+    }
+
+    .section__footer .logo img {
+        max-height: 30px;
+        /* Sesuaikan margin untuk mobile */
+    }
+
+
+    .lingkar_umur {
+        width: 20px;
+        /* Sesuaikan ukuran lingkaran untuk mobile */
+        height: 20px;
+        min-width: 20px;
+        margin-left: 8px;
+        min-height: 20px;
+    }
+
+    .lingkar_umur p {
+        font-size: 8px;
+        /* Sesuaikan font size untuk mobile */
+    }
+
+    .perhatian_footer {
+        margin: 0 5px;
+        /* Sesuaikan margin untuk mobile */
+    }
 }

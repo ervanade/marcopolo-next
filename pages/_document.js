@@ -8,6 +8,7 @@ export default function Document() {
       <Head>
       <link rel="icon" href="/marcopolo__favicon.png" />
       <link rel='canonical' href={currentUrl} />
+      <meta name="robots" content="index, follow"/>
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-X1DK4JPXR0" strategy="afterInteractive" />
       {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1DK4JPXR0"></script> */}
       <Script dangerouslySetInnerHTML={{

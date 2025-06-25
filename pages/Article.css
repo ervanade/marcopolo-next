@@ -165,7 +165,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 48px;
+    margin-bottom: 48px;
 
 
 }
@@ -257,5 +258,11 @@
 
     .article .card__article {
         height: 420px;
+    }
+    .button-load-more {
+        margin-top: 32px;
+        margin-bottom: 32px;
+    
+    
     }
 }

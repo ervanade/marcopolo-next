@@ -16,7 +16,7 @@ const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 const Article = () => {
   // const [article, setArticle] = useState(null)
-  const [perPage, setPerPage] = useState(6);
+  const [perPage, setPerPage] = useState(30);
 
   const handleLoadMore = () => {
     setPerPage(perPage + 6);

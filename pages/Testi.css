@@ -136,6 +136,12 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .slick-dots {
+        display: none !important;
+    }
+}
+
 @media screen and (max-width: 374px) {
     .card__testi {
         height: 600px;

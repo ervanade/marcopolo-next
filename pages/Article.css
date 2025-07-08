@@ -105,7 +105,8 @@
     cursor: pointer;
 }
 
-.card__article h1 {
+.card__article h1,
+.card__article h2 {
     font-size: 22px;
     color: black;
     font-family: "Urbanist";
@@ -225,7 +226,9 @@
 
 
 @media screen and (max-width: 1366px) {
-    .hero .card__article h1 {
+
+    .hero .card__article h1,
+    .hero .card__article h2 {
         font-size: 22px !important;
         line-height: 24px !important;
     }
@@ -237,7 +240,9 @@
 }
 
 @media screen and (max-width: 768px) {
-    .card__article h1 {
+
+    .card__article h1,
+    .card__article h2 {
         font-size: 18px !important;
         line-height: 20px !important;
     }
@@ -246,7 +251,8 @@
         font-size: 14px;
     }
 
-    .hero .card__article h1 {
+    .hero .card__article h1,
+    .hero .card__article h2 {
         font-size: 16px !important;
         line-height: 18px !important;
     }

@@ -99,7 +99,7 @@ const Testi = () => {
                         <img src={`${process.env.NEXT_PUBLIC_APP_API_PUBLIC}${item?.images[0].image_mid}`} alt="testimony_image" />
                       </a>
                       <a target="_blank" href={item?.subtitle} rel="noopener noreferrer">
-                        <h1>{item?.title && HTMLDecoderEncoder.decode((item?.title))}</h1></a>
+                        <h2>{item?.title && HTMLDecoderEncoder.decode((item?.title))}</h2></a>
                     </div>
 
 

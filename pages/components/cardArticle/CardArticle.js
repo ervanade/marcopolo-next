@@ -14,7 +14,7 @@ const CardArticle = ({ Title, Image, Excerpt, Links }) => {
         </Link>
       </div>
       <div className="card__description">
-        <Link draggable="true" onDragStart={handleDragStart} href={Links || "#"}><h1>{Title?.split(" ").slice(0, 7).join(" ")}..</h1></Link>
+        <Link draggable="true" onDragStart={handleDragStart} href={Links || "#"}><h2>{Title?.split(" ").slice(0, 7).join(" ")}..</h2></Link>
         <p>{Excerpt?.split(" ").slice(0, 10).join(" ")}...</p>
         <Link href={Links || "#"}><button className='button__explore' name="button__explore">Explore<MdTravelExplore className="button__icon" size={20} /></button></Link>
       </div>

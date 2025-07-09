@@ -8,6 +8,7 @@ import { IoHome } from "react-icons/io5";
 import Link from 'next/link';
 import { AiFillHome, AiFillFileText, AiFillCalendar } from "react-icons/ai";
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 
 
@@ -67,6 +68,26 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
               Articles</Link></li>
             <li><Link href="/testimoni">
             Testimony</Link></li>
+            <li><a target="_blank"
+                  rel="noopener noreferrer"
+                  href='https://www.instagram.com/followthemarc?igsh=MWVnZWtkMjA1ZTFvbg=='>
+                    <Image
+                    src="/ig-icon.png"
+                    width={24}
+                    height={24}
+                    alt="Social Media Icons"
+                  />
+                  </a></li>
+                  <li><a target="_blank"
+                  rel="noopener noreferrer"
+                  href='https://www.tiktok.com/@followthemarc?_t=ZS-8xqUpo2xk2B&_r=1'>
+                   <Image
+                    src="/tiktok-icon.png"
+                    width={24}
+                    height={24}
+                    alt="Social Media Icons"
+                  />
+                  </a></li>
 
             </ul></div>
           </div>
@@ -85,6 +106,25 @@ const Navbar = ({openModalLogin, setOpenModalLogin, openModalRegister, setOpenMo
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/article">Articles</Link></li>
                 <li><Link href="/testimoni">Testimony</Link></li>
+                <li style={{display: "flex", alignItems: "center"}}><a target="_blank"
+                  rel="noopener noreferrer"
+                  href='https://www.instagram.com/followthemarc?igsh=MWVnZWtkMjA1ZTFvbg=='>
+                    <Image
+                    src="/ig-icon.png"
+                    width={24}
+                    height={24}
+                    alt="Social Media Icons"
+                  />
+                  </a><a target="_blank"
+                  rel="noopener noreferrer"
+                  href='https://www.tiktok.com/@followthemarc?_t=ZS-8xqUpo2xk2B&_r=1'>
+                   <Image
+                    src="/tiktok-icon.png"
+                    width={24}
+                    height={24}
+                    alt="Social Media Icons"
+                  />
+                  </a></li>
             
             </ul>
         </div>

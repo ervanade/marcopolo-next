@@ -68,7 +68,7 @@ const Navbar = ({ openModalLogin, setOpenModalLogin, openModalRegister, setOpenM
                     Articles</Link></li>
                   <li><Link href="/testimoni">
                     Testimony</Link></li>
-                  <li><a target="_blank"
+                  {/* <li><a target="_blank"
                     rel="noopener noreferrer"
                     href='https://www.instagram.com/followthemarc?igsh=MWVnZWtkMjA1ZTFvbg=='>
                     <Image
@@ -99,7 +99,7 @@ const Navbar = ({ openModalLogin, setOpenModalLogin, openModalRegister, setOpenM
                         alt="Social Media Icons"
                       />
                     </a>
-                  </li>
+                  </li> */}
 
                 </ul></div>
             </div>
@@ -118,7 +118,7 @@ const Navbar = ({ openModalLogin, setOpenModalLogin, openModalRegister, setOpenM
             <li><Link href="/">Home</Link></li>
             <li><Link href="/article">Articles</Link></li>
             <li><Link href="/testimoni">Testimony</Link></li>
-            <li style={{ display: "flex", alignItems: "center" }}><a target="_blank"
+            {/* <li style={{ display: "flex", alignItems: "center" }}><a target="_blank"
               rel="noopener noreferrer"
               href='https://www.instagram.com/followthemarc?igsh=MWVnZWtkMjA1ZTFvbg=='>
               <Image
@@ -145,7 +145,7 @@ const Navbar = ({ openModalLogin, setOpenModalLogin, openModalRegister, setOpenM
                   height={24}
                   alt="Social Media Icons"
                 />
-              </a></li>
+              </a></li> */}
 
           </ul>
         </div>
